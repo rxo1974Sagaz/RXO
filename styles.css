@@ -8,7 +8,7 @@
 
   /* CONTROLES DA CAPA */
   /* 0% topo | 50% centro | 100% base */
-  --hero-y:35%;
+  --hero-y:0%;
   /* cover = preenche (pode cortar) | contain = não corta (pode sobrar borda) */
   --hero-size:contain;
 }
