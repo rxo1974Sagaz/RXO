@@ -10,7 +10,7 @@
   /* Capa (controle simples) */
   --hero-height:56vh;     /* altura da capa */
   --hero-x:50%;           /* 0% esquerda | 50% centro | 100% direita */
-  --hero-y:0%;           /* 0% topo    | 50% centro | 100% base   */
+  --hero-y:10%;           /* 0% topo    | 50% centro | 100% base   */
   --hero-size:cover;      /* cover = preenche (pode cortar) | contain = não corta */
 
   /* Gradiente da capa */
