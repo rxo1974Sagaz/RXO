@@ -1,4 +1,3 @@
-/* === TEMA === */
 :root{
   --bg:#0b0d12;
   --fg:#e6e6e6;
@@ -8,7 +7,6 @@
   --max:900px;
 }
 
-/* === BASE === */
 *{box-sizing:border-box}
 html,body{
   margin:0;
@@ -23,7 +21,7 @@ a:hover{text-decoration:underline}
 .container{max-width:var(--max);margin:0 auto;padding:24px}
 .header{position:relative;isolation:isolate}
 
-/* === CAPA (HERO) === */
+/* === CAPA === */
 .hero{
   position:relative;
   width:100%;
@@ -37,7 +35,7 @@ a:hover{text-decoration:underline}
   width:100%;
   height:100%;
   object-fit:cover;
-  object-position:50% 36% !important; /* ← ajuste aqui: menor = sobe / maior = desce */
+  object-position:50% 36% !important; /* ← Mude esse número p/ ajustar o rosto */
   display:block;
 }
 .hero::after{
@@ -55,7 +53,6 @@ a:hover{text-decoration:underline}
   z-index:2;
 }
 
-/* === TEXTOS E LINKS === */
 .badge{
   display:inline-block;
   background:rgba(255,255,255,.12);
