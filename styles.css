@@ -5,6 +5,12 @@
   --accent:#ffd166;
   --card:#131722;
   --max:900px;
+
+  /* CONTROLES DA CAPA */
+  /* 0% topo | 50% centro | 100% base */
+  --hero-y:35%;
+  /* cover = preenche (pode cortar) | contain = não corta (pode sobrar borda) */
+  --hero-size:contain;
 }
 
 *{box-sizing:border-box}
@@ -14,7 +20,7 @@ a:hover{text-decoration:underline}
 .container{max-width:var(--max);margin:0 auto;padding:24px}
 .header{position:relative;isolation:isolate}
 
-/* HERO (imagem de fundo, com gradiente mais leve p/ mostrar mais o rosto) */
+/* HERO com variáveis (controle total) */
 .hero{
   position:relative;
   width:100%;
@@ -23,12 +29,18 @@ a:hover{text-decoration:underline}
   border-radius:16px;
   overflow:hidden;
   box-shadow:0 10px 30px rgba(0,0,0,.35);
-  background:#000 url('assets/images/cover.png') center/cover no-repeat;
+
+  /* imagem + foco controláveis */
+  background-color:#000; /* aparece nas bordas quando usar contain */
+  background-image:url('assets/images/cover.png');
+  background-repeat:no-repeat;
+  background-position:center var(--hero-y) !important;
+  background-size:var(--hero-size) !important;
 }
 .hero::after{
   content:'';
   position:absolute;inset:0;
-  /* topo bem leve, base moderada: texto aparece e foto fica mais visível */
+  /* gradiente leve no topo e moderado na base p/ manter texto legível */
   background:linear-gradient(180deg,rgba(0,0,0,.02),rgba(0,0,0,.55) 70%);
   pointer-events:none;
 }
