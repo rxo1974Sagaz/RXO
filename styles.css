@@ -1,46 +1,104 @@
-
 :root{
+  /* Tema */
   --bg:#0b0d12;
   --fg:#e6e6e6;
   --muted:#9aa4b2;
   --accent:#ffd166;
   --card:#131722;
   --max:900px;
+
+  /* 👉 Controle fino da capa (mude só estes dois valores) */
+  /* 0% = mais à esquerda/alto | 50% = centro | 100% = direita/baixo  */
+  --hero-x:50%;
+  --hero-y:22%;  /* ↓ diminua para “subir” o enquadramento e mostrar mais o rosto */
 }
+
 *{box-sizing:border-box}
-html,body{margin:0;padding:0;background:var(--bg);color:var(--fg);font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,'Helvetica Neue',Arial}
+html,body{
+  margin:0;
+  padding:0;
+  background:var(--bg);
+  color:var(--fg);
+  font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial
+}
 a{color:var(--accent);text-decoration:none}
 a:hover{text-decoration:underline}
+
 .container{max-width:var(--max);margin:0 auto;padding:24px}
 .header{position:relative;isolation:isolate}
+
+/* ====== HERO (capa) ====== */
 .hero{
   position:relative;
   width:100%;
-  height:56vh;
-  min-height:360px;
+  height:60vh;           /* um pouco mais alta para enquadrar melhor rostos */
+  min-height:380px;
   border-radius:16px;
   overflow:hidden;
   box-shadow:0 10px 30px rgba(0,0,0,.35);
-  background:#000 url('assets/images/cover.png') center/cover no-repeat;
+
+  /* Imagem da capa + foco controlável por variáveis */
+  background-color:#000;
+  background-image:url('assets/images/cover.png');
+  background-repeat:no-repeat;
+  background-size:cover;
+  background-position:var(--hero-x) var(--hero-y);
+  /* Dica: se a imagem tiver muito “peso” em um lado, ajuste --hero-x também */
 }
 .hero::after{
   content:'';
-  position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0.1),rgba(0,0,0,.75) 70%);
+  position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(0,0,0,.08),rgba(0,0,0,.78) 72%);
 }
 .hero-content{
-  position:absolute;inset:auto 0 0 0;padding:32px;z-index:2;color:#fff;
+  position:absolute;inset:auto 0 0 0;
+  padding:32px;
+  z-index:2;
+  color:#fff;
 }
-.badge{display:inline-block;background:rgba(255,255,255,.12);padding:4px 10px;border-radius:999px;font-size:12px;backdrop-filter:blur(4px)}
+
+/* Badges, títulos e subtítulo */
+.badge{
+  display:inline-block;
+  background:rgba(255,255,255,.12);
+  padding:4px 10px;
+  border-radius:999px;
+  font-size:12px;
+  backdrop-filter:blur(4px)
+}
 .title{font-size:clamp(28px,4vw,44px);font-weight:800;margin:10px 0 6px}
 .subtitle{font-size:clamp(14px,2.3vw,18px);color:#e9eef7;max-width:800px}
 .nav{display:flex;gap:16px;margin-top:12px}
 .nav a{padding:8px 12px;border-radius:10px;background:rgba(255,255,255,.08)}
+
+/* Seções e cartões */
 .section{margin-top:40px}
-.card{background:var(--card);border:1px solid rgba(255,255,255,.06);border-radius:14px;padding:22px;box-shadow:0 10px 24px rgba(0,0,0,.18)}
+.card{
+  background:var(--card);
+  border:1px solid rgba(255,255,255,.06);
+  border-radius:14px;
+  padding:22px;
+  box-shadow:0 10px 24px rgba(0,0,0,.18)
+}
+
+/* Layout responsivo do bloco “Sobre” */
 .grid{display:grid;gap:18px;grid-template-columns:1fr}
-@media(min-width:860px){.grid{grid-template-columns:1.1fr .9fr}}
+@media(min-width:860px){
+  .grid{grid-template-columns:1.1fr .9fr}
+}
+
+/* Tipografia auxiliar */
 .h1{font-size:26px;margin:0 0 10px}
 .muted{color:var(--muted)}
-.post img{width:100%;border-radius:12px;margin:4px 0 14px;box-shadow:0 10px 24px rgba(0,0,0,.25)}
+.post img{
+  width:100%;
+  border-radius:12px;
+  margin:4px 0 14px;
+  box-shadow:0 10px 24px rgba(0,0,0,.25)
+}
 footer{margin:40px 0 20px;color:var(--muted);font-size:14px;text-align:center}
-blockquote{border-left:4px solid var(--accent);margin:16px 0;padding:8px 14px;color:#f5f5f5;background:rgba(255,209,102,.06);border-radius:8px}
+blockquote{
+  border-left:4px solid var(--accent);
+  margin:16px 0;
+  padding:8px
+
