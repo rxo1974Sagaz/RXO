@@ -132,3 +132,23 @@ footer{
   margin:40px 0 20px; color:var(--muted);
   font-size:14px; text-align:center;
 }
+/* Correção de quebra de título no mobile */
+.title{
+  font-size:clamp(28px,4vw,44px);
+  font-weight:800;
+  margin:10px 0 6px;
+  text-shadow:0 2px 8px rgba(0,0,0,.35);
+  line-height:1.15;           /* deixa mais “respirado” */
+  word-break:normal;
+  overflow-wrap:break-word;   /* quebra corretamente sem cortar letras */
+  hyphens:auto;               /* permite hifenização suave */
+  white-space:normal;         /* garante quebra em telas pequenas */
+  text-align:left;            /* evita centralização forçada no wrap */
+}
+
+@media (max-width:520px){
+  .title{
+    font-size:26px;           /* fixa tamanho seguro no mobile */
+    line-height:1.2;
+  }
+}
