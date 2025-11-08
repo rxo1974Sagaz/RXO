@@ -145,3 +145,14 @@ footer{
   .post iframe{height:240px}
   .nav{gap:8px}
 }
+@media (max-width:520px){
+  .hero{height:52vh; min-height:360px}
+  .title{font-size:26px; line-height:1.22}
+  .post iframe{height:240px}
+  .nav{gap:8px}
+}
+
+/* ajuste fino: move o foco da imagem para o topo no mobile */
+@media (max-width:520px){
+  :root{ --hero-y:0%; }
+}
