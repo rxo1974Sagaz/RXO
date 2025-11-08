@@ -9,6 +9,20 @@
   <meta property="og:description" content="Liderança em manufatura e operações.">
   <meta property="og:image" content="assets/images/cover.png">
   <link rel="stylesheet" href="styles.css?v=2">
+  <!-- estilos mínimos do like (sem mexer no styles.css) -->
+  <style>
+    .likes{display:flex;align-items:center;gap:10px;margin-top:12px}
+    .like-btn{
+      background:rgba(255,255,255,.08);
+      color:#ffd166;
+      border:1px solid rgba(255,255,255,.12);
+      padding:8px 12px;border-radius:10px;cursor:pointer;
+      font-weight:700
+    }
+    .like-btn:hover{background:rgba(255,255,255,.12)}
+    .like-btn.liked{background:#ffd166;color:#0b0d12;border-color:#ffd166}
+    .like-count{color:#e6e6e6;font-weight:700}
+  </style>
 </head>
 <body id="topo">
   <header class="header container">
@@ -48,7 +62,7 @@
       <!-- POST 901 -->
       <h2 class="h1">901# Devo muito a eles — 07/10/25</h2>
       <div class="muted">Texto autoral RXO</div>
-      <div class="post card" style="margin-top:10px">
+      <div class="post card" style="margin-top:10px" data-post-id="901">
         <img src="assets/images/post.png" alt="Três pessoas na sala de aula">
         <p>Em 1982, eu era só mais um menino em São Miguel Paulista, bairro onde liberdade tinha limite de horário. A escola era pública, a rua perigosa. Mas em casa havia estrutura. Meus pais, mesmo com pouco, nunca deixaram faltar o que importava: rotina, orientação e uma exigência silenciosa que formava caráter. Meu pai tinha emprego, e minha mãe fazia o dinheiro durar até o fim do mês. Não havia luxo, mas havia régua — e isso vale muito. Estudar era prioridade, não por discurso, mas por ser o único plano. Meus brinquedos cabiam numa prateleira: bola, gibis, livros e um radinho que ganhei do meu pai. Nele, ouvia jogos do Corinthians e, sem perceber, aprendia a escutar o mundo com atenção.</p>
         <p>Mesmo com a violência no bairro, ainda havia tempo de ser criança. Soltava pipa e jogava bola no campinho de terra batida que sujava até o pensamento (até hoje tenho cascão nos pés 🤣🤣🤣). Ali aprendi que convivência não é afeto, é adaptação. Ninguém sai ileso da infância, mas nem tudo vira trauma — alguns viram instrução. Na escola, eu não causava problemas, mas também não passava despercebido. Queria aprender. Não para “mudar o mundo”, mas para não repetir o mesmo padrão. E isso já era muito. Olho praquele menino de 1982 com respeito. Sabia pouco da vida, mas teve coragem de seguir os pais e ser constante.</p>
@@ -57,6 +71,12 @@
         <p>Por isso, agradeço aos dois meninos ajuizados — o de 1982 e o de 1992 — que, mesmo sonhando pouco, seguiram em frente. Eles não sabiam muito sobre o futuro, mas sabiam que só a ação dá sentido ao tempo.</p>
         <p>Se este texto chegar a alguém que, como eu, precisou amadurecer cedo, deixo uma sugestão: pare um pouco. Pense nas suas versões anteriores. E agradeça. Foram elas que sustentaram tudo até aqui.</p>
         <blockquote>“O que somos é consequência do que pensamos.” — Buda</blockquote>
+
+        <div class="likes">
+          <button class="like-btn" type="button" aria-label="Curtir">👍 Curtir</button>
+          <span class="like-count">0</span>
+        </div>
+
         <div style="text-align:right; margin-top:20px;">
           <a href="#topo" style="display:inline-block; padding:8px 14px; background:rgba(255,255,255,.08); border-radius:10px; color:#ffd166; font-weight:600; text-decoration:none;">↑ Voltar ao início</a>
         </div>
@@ -65,7 +85,7 @@
       <!-- POST 904 -->
       <h2 class="h1">904# Mudar de opinião é natural! - 02/11/25</h2>
       <div class="muted">Texto autoral RXO</div>
-      <div class="post card" style="margin-top:10px">
+      <div class="post card" style="margin-top:10px" data-post-id="904">
         <img src="assets/images/1762135579298.jpg" alt="Comparação entre chimpanzés cooperando e executivos discutindo em uma reunião">
         <p>Normalmente interpreta-se o ato de mudar de opinião em muitas rodas de liderança e decisão, como fraqueza. Como se coerência fosse uma linha reta, e não um processo iterativo, onde cada nova evidência exige, ao menos, uma revisão honesta da hipótese anterior. Mas o dado mais simbólico dos últimos dias não veio de uma sala de aula, nem do mundo corporativo: veio do reino animal, literalmente.</p>
         <p>Pesquisadores da Universidade de Utrecht, junto com colegas da Califórnia, mostraram que chimpanzés conseguem "mudar de opinião" quando são confrontados com dados contraditórios. Em testes laboratoriais, os animais recebiam uma pista para escolher uma das caixas com alimento. Após essa escolha inicial, uma nova pista era oferecida — mais forte, mais clara, mais assertiva. E eles mudavam. Simples assim. Porque fazia sentido. Porque agora o contexto era outro. Porque persistir no erro não trazia vantagem nenhuma pois ficava claro que era tolice.</p>
@@ -77,6 +97,12 @@
         <p>Na próxima vez que uma nova evidência bater à sua porta, pergunte: isso desmonta minha visão... ou a aprimora?</p>
         <p>Porque às vezes, o maior erro é insistir em acertar.</p>
         <blockquote>“Quando os fatos mudam, eu mudo de opinião. E você, o que faz?” — John Maynard Keynes</blockquote>
+
+        <div class="likes">
+          <button class="like-btn" type="button" aria-label="Curtir">👍 Curtir</button>
+          <span class="like-count">0</span>
+        </div>
+
         <div style="text-align:right; margin-top:20px;">
           <a href="#topo" style="display:inline-block; padding:8px 14px; background:rgba(255,255,255,.08); border-radius:10px; color:#ffd166; font-weight:600; text-decoration:none;">↑ Voltar ao início</a>
         </div>
@@ -87,5 +113,35 @@
   <footer>
     © 2025 RXO. Todos os direitos reservados.
   </footer>
+
+  <!-- Script do like (localStorage por post) -->
+  <script>
+    (function() {
+      function key(id){ return 'rxo_like_' + id; }
+      function countKey(id){ return 'rxo_like_count_' + id; }
+
+      document.querySelectorAll('.post.card').forEach(function(post){
+        var id = post.getAttribute('data-post-id');
+        var btn = post.querySelector('.like-btn');
+        var countEl = post.querySelector('.like-count');
+
+        // carrega estado
+        var liked = localStorage.getItem(key(id)) === '1';
+        var count = parseInt(localStorage.getItem(countKey(id) ) || '0', 10);
+
+        if (liked) btn.classList.add('liked');
+        countEl.textContent = count;
+
+        btn.addEventListener('click', function(){
+          liked = !liked;
+          btn.classList.toggle('liked', liked);
+          if (liked) { count++; localStorage.setItem(key(id),'1'); }
+          else { count = Math.max(0, count-1); localStorage.removeItem(key(id)); }
+          localStorage.setItem(countKey(id), String(count));
+          countEl.textContent = count;
+        });
+      });
+    })();
+  </script>
 </body>
 </html>
