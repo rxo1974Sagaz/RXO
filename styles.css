@@ -10,7 +10,7 @@
   /* 👉 Controle fino da capa (mude só estes dois valores) */
   /* 0% = mais à esquerda/alto | 50% = centro | 100% = direita/baixo  */
   --hero-x:50%;
-  --hero-y:37%;  /* ↓ diminua para “subir” o enquadramento e mostrar mais o rosto */
+  --hero-y:50%;  /* ↓ diminua para “subir” o enquadramento e mostrar mais o rosto */
 }
 
 *{box-sizing:border-box}
