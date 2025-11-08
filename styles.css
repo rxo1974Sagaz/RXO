@@ -7,15 +7,15 @@
   --card:#131722;
   --max:900px;
 
-  /* Capa (controle simples) */
+  /* Capa (controles) */
   --hero-height:56vh;     /* altura da capa */
   --hero-x:50%;           /* 0% esquerda | 50% centro | 100% direita */
-  --hero-y:5%;           /* 0% topo    | 50% centro | 100% base   */
+  --hero-y:5%;            /* 0% topo    | 50% centro | 100% base   */
   --hero-size:cover;      /* cover = preenche (pode cortar) | contain = não corta */
 
   /* Gradiente da capa */
-  --overlay-top:0.06;     /* 0 a 1 (quanto escurece no topo)  */
-  --overlay-bottom:0.60;  /* 0 a 1 (quanto escurece na base)  */
+  --overlay-top:0.06;     /* 0–1 (escurece topo)   */
+  --overlay-bottom:0.60;  /* 0–1 (escurece base)   */
 }
 
 *{box-sizing:border-box}
@@ -34,10 +34,12 @@ a:hover{text-decoration:underline}
 
 /* ===== Capa (HERO) ===== */
 .hero{
-  position:relative; width:100%;
+  position:relative;
+  width:100%;
   height:var(--hero-height);
   min-height:360px;
-  border-radius:16px; overflow:hidden;
+  border-radius:16px;
+  overflow:hidden;
   box-shadow:0 10px 30px rgba(0,0,0,.35);
 
   background-color:#000;
@@ -50,10 +52,11 @@ a:hover{text-decoration:underline}
 .hero::after{
   content:"";
   position:absolute; inset:0; pointer-events:none;
-  background:
-    linear-gradient(180deg,
-      rgba(0,0,0,var(--overlay-top)) 0%,
-      rgba(0,0,0,var(--overlay-bottom)) 70%);
+  background:linear-gradient(
+    180deg,
+    rgba(0,0,0,var(--overlay-top)) 0%,
+    rgba(0,0,0,var(--overlay-bottom)) 70%
+  );
 }
 
 .hero-content{
@@ -61,12 +64,17 @@ a:hover{text-decoration:underline}
   padding:32px; z-index:1; color:#fff;
 }
 
-/* Título/Subtítulo */
+/* Título/Subtítulo (com correção para mobile não “comer” palavras) */
 .title{
   font-size:clamp(28px,4vw,44px);
+  line-height:1.18;
   font-weight:800;
   margin:10px 0 6px;
   text-shadow:0 2px 8px rgba(0,0,0,.35);
+  white-space:normal;
+  overflow-wrap:break-word;
+  word-break:normal;
+  hyphens:auto;
 }
 .subtitle{
   font-size:clamp(14px,2.3vw,18px);
@@ -78,7 +86,8 @@ a:hover{text-decoration:underline}
 .badge{
   display:inline-block; font-size:12px;
   padding:4px 10px; border-radius:999px;
-  background:rgba(255,255,255,.12); backdrop-filter:blur(4px);
+  background:rgba(255,255,255,.12);
+  backdrop-filter:blur(4px);
 }
 .nav{
   display:flex; flex-wrap:wrap; gap:10px; margin-top:12px;
@@ -112,13 +121,9 @@ a:hover{text-decoration:underline}
   box-shadow:0 10px 24px rgba(0,0,0,.25);
 }
 
-/* Vídeos responsivos (mantém estilo atual do iframe) */
+/* Vídeos responsivos */
 .post iframe{
   display:block; width:100%; height:450px; border:0;
-}
-@media (max-width:520px){
-  .hero{height:52vh; min-height:320px}
-  .post iframe{height:240px}
 }
 
 /* Citações e rodapé */
@@ -132,23 +137,11 @@ footer{
   margin:40px 0 20px; color:var(--muted);
   font-size:14px; text-align:center;
 }
-/* Correção de quebra de título no mobile */
-.title{
-  font-size:clamp(28px,4vw,44px);
-  font-weight:800;
-  margin:10px 0 6px;
-  text-shadow:0 2px 8px rgba(0,0,0,.35);
-  line-height:1.15;           /* deixa mais “respirado” */
-  word-break:normal;
-  overflow-wrap:break-word;   /* quebra corretamente sem cortar letras */
-  hyphens:auto;               /* permite hifenização suave */
-  white-space:normal;         /* garante quebra em telas pequenas */
-  text-align:left;            /* evita centralização forçada no wrap */
-}
 
+/* ===== Ajustes Mobile ===== */
 @media (max-width:520px){
-  .title{
-    font-size:26px;           /* fixa tamanho seguro no mobile */
-    line-height:1.2;
-  }
+  .hero{height:52vh; min-height:360px}
+  .title{font-size:26px; line-height:1.22}
+  .post iframe{height:240px}
+  .nav{gap:8px}
 }
