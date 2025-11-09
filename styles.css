@@ -60,7 +60,7 @@ a:hover{text-decoration:underline}
 }
 
 .hero-content{
-  position:absolute; left:0; right:0; bottom:0;
+  position:absolute; left:0; right:0; top:16px; /* <-- ANCORA NO TOPO */
   padding:32px; z-index:1; color:#fff;
 }
 
