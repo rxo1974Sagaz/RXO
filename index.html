@@ -62,33 +62,63 @@
 
     <!-- PUBLICAÇÕES -->
 <!-- Campo de busca por número do post -->
-<div style="margin-top:16px;">
+<div style="text-align:center; margin-top:20px;">
   <input 
     type="number" 
     id="postSearch" 
-    placeholder="Digite o número do post (ex: 900)" 
-    style="padding:8px 12px; border-radius:10px; border:1px solid rgba(255,255,255,.2); background:rgba(255,255,255,.08); color:#fff; width:160px;"
+    placeholder="Ir para o post nº (ex: 900)" 
+    style="padding:8px 12px; border-radius:10px; border:1px solid rgba(255,255,255,.2); background:rgba(255,255,255,.08); color:#fff; width:200px;"
   >
   <button 
-    onclick="goToPost()" 
+    id="postSearchBtn"
     style="padding:8px 14px; border-radius:10px; background:rgba(255,255,255,.08); color:#ffd166; font-weight:600; border:none; cursor:pointer; margin-left:6px;"
-  >
-    Ir
-  </button>
+  >Ir</button>
 </div>
 
 <script>
-function goToPost() {
-  const num = document.getElementById('postSearch').value.trim();
-  if (num) {
-    const target = document.querySelector(`h2.h1:has(a[name='post${num}']), h2.h1:contains('${num}#')`);
-    if (target) {
-      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    } else {
-      alert('Post não encontrado.');
+// 1) Indexa os posts criando âncoras estáveis (#postNNN)
+(function indexarPosts(){
+  const heads = document.querySelectorAll('h2.h1');
+  heads.forEach(h => {
+    // pega o número antes de '#', ignorando espaços
+    const m = h.textContent.trim().match(/^(\d+)\s*#/);
+    if (m) {
+      const num = m[1];
+      // define id no H2 se ainda não tiver
+      if (!h.id) h.id = 'post' + num;
+      // também marca data-attr para debug
+      h.setAttribute('data-post-num', num);
     }
+  });
+})();
+
+// 2) Função para navegar
+function goToPostNumber(numStr){
+  const num = String(numStr || '').trim();
+  if (!num) return;
+  const el = document.getElementById('post' + num);
+  if (el) {
+    // Atualiza o hash (útil para compartilhar link)
+    if (history.pushState) {
+      history.pushState(null, '', '#post' + num);
+    } else {
+      location.hash = '#post' + num;
+    }
+    el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  } else {
+    alert('Post ' + num + ' não encontrado.');
   }
 }
+
+// 3) Ligações dos controles (clique e Enter)
+document.getElementById('postSearchBtn').addEventListener('click', () => {
+  goToPostNumber(document.getElementById('postSearch').value);
+});
+document.getElementById('postSearch').addEventListener('keydown', (e) => {
+  if (e.key === 'Enter') {
+    goToPostNumber(e.target.value);
+  }
+});
 </script>
 
     <section id="publicacoes" class="section">
