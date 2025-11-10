@@ -61,6 +61,36 @@
     </section>
 
     <!-- PUBLICAÇÕES -->
+<!-- Campo de busca por número do post -->
+<div style="margin-top:16px;">
+  <input 
+    type="number" 
+    id="postSearch" 
+    placeholder="Digite o número do post (ex: 900)" 
+    style="padding:8px 12px; border-radius:10px; border:1px solid rgba(255,255,255,.2); background:rgba(255,255,255,.08); color:#fff; width:160px;"
+  >
+  <button 
+    onclick="goToPost()" 
+    style="padding:8px 14px; border-radius:10px; background:rgba(255,255,255,.08); color:#ffd166; font-weight:600; border:none; cursor:pointer; margin-left:6px;"
+  >
+    Ir
+  </button>
+</div>
+
+<script>
+function goToPost() {
+  const num = document.getElementById('postSearch').value.trim();
+  if (num) {
+    const target = document.querySelector(`h2.h1:has(a[name='post${num}']), h2.h1:contains('${num}#')`);
+    if (target) {
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } else {
+      alert('Post não encontrado.');
+    }
+  }
+}
+</script>
+
     <section id="publicacoes" class="section">
 
 <!-- POST 850 -->
