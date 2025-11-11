@@ -29,18 +29,17 @@
           <a href="https://github.com/" target="_blank" rel="noopener">GitHub</a>
         </div>
 
-        <!-- BUSCA POR NÚMERO DO POST (fica no header, não cria novo container) -->
-        <div class="post-jump" style="margin-top:16px; display:flex; gap:8px; align-items:center; justify-content:center;">
+        <!-- BUSCA POR NÚMERO DO POST -->
+        <div style="margin-top:16px; display:flex; gap:8px; align-items:center; justify-content:center;">
           <input
-            type="number"
-            id="postJump"
-            inputmode="numeric"
+            id="postSearch"
+            type="text" inputmode="numeric" pattern="\d*"
             placeholder="Ir para o post nº (ex: 900)"
             style="padding:8px 12px; border-radius:10px; border:1px solid rgba(255,255,255,.18);
                    background:rgba(255,255,255,.06); color:var(--fg); width:220px;"
           >
           <button
-            id="postJumpBtn"
+            id="postSearchBtn"
             style="padding:8px 14px; border-radius:10px; background:rgba(255,255,255,.08);
                    color:var(--accent); font-weight:600; border:none; cursor:pointer;"
           >Ir</button>
@@ -50,63 +49,63 @@
     </div>
   </header>
 
-  <!-- … restante da sua página (sobre, publicações, posts etc.) … -->
+  <main class="container">
+    <!-- (seu conteúdo de seções e posts fica daqui pra baixo sem alterações) -->
 
-  <!-- SCRIPT: deixa no final da página, antes de </body> -->
-  <script>
-  (function () {
-    // Cria/garante IDs para posts: h2.h1 com padrão "NNN# Título"
-    function indexarPosts() {
-      document.querySelectorAll('h2.h1').forEach(h => {
-        const txt = (h.textContent || '').trim();
-        // aceita 1 a 4 dígitos antes de "#": 7#, 850#, 1234#
-        const m = txt.match(/^(\d{1,4})\s*#/);
-        if (m) {
-          const num = m[1];
-          if (!h.id) h.id = 'post' + num;             // ex.: id="post910"
-          h.setAttribute('data-post-num', num);
-        }
-      });
-    }
-
-    function irParaPost(numero) {
-      const num = String(numero || '').trim();
-      if (!num) return;
-
-      // Garante que os IDs foram criados
-      if (!document.getElementById('post' + num)) indexarPosts();
-
-      const alvo = document.getElementById('post' + num);
-      if (alvo) {
-        if (history.pushState) history.pushState(null, '', '#post' + num);
-        else location.hash = '#post' + num;
-        alvo.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      } else {
-        alert('Post ' + num + ' não encontrado.');
-      }
-    }
-
-    document.addEventListener('DOMContentLoaded', function () {
-      indexarPosts();
-
-      // Se já abriu a página com #postNNN na URL, rola até lá
-      if (location.hash && /^#post\d{1,4}$/.test(location.hash)) {
-        const alvo = document.querySelector(location.hash);
-        if (alvo) alvo.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
-
-      const input = document.getElementById('postJump');
-      const btn   = document.getElementById('postJumpBtn');
-
-      if (btn && input) {
-        btn.addEventListener('click', () => irParaPost(input.value));
-        input.addEventListener('keydown', (e) => {
-          if (e.key === 'Enter') irParaPost(e.target.value);
+    <script>
+    (function(){
+      // Cria IDs nos h2.h1 no formato "postNNN", aceitando N com qualquer número de dígitos.
+      function indexarPosts(){
+        document.querySelectorAll('h2.h1').forEach(h => {
+          const txt = (h.textContent || '').trim();
+          const m = txt.match(/^(\d+)\s*#/); // ex.: "910# Título"
+          if (m) {
+            const num = m[1];
+            if (!h.id) h.id = 'post' + num;
+            h.dataset.postNum = num;
+          }
         });
       }
-    });
-  })();
-  </script>
+
+      function irParaPost(numStr){
+        const num = String(numStr || '').replace(/[^\d]/g, '').trim();
+        if (!num) return;
+
+        // Garante que os IDs existam
+        if (!document.getElementById('post' + num)) indexarPosts();
+
+        const alvo = document.getElementById('post' + num);
+        if (alvo) {
+          if (history.pushState) history.pushState(null, '', '#post' + num);
+          else location.hash = '#post' + num;
+          alvo.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        } else {
+          alert('Post ' + num + ' não encontrado.');
+        }
+      }
+
+      document.addEventListener('DOMContentLoaded', () => {
+        indexarPosts();
+
+        // Se abriu com #postNNN, rola até lá
+        if (location.hash && /^#post\d+$/.test(location.hash)) {
+          const alvo = document.querySelector(location.hash);
+          if (alvo) alvo.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        const input = document.getElementById('postSearch');
+        const btn   = document.getElementById('postSearchBtn');
+
+        if (btn && input) {
+          btn.addEventListener('click', () => irParaPost(input.value));
+          input.addEventListener('keydown', e => {
+            if (e.key === 'Enter') irParaPost(e.target.value);
+          });
+        }
+      });
+    })();
+    </script>
+  </main>
 </body>
 </html>
 
