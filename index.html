@@ -28,98 +28,76 @@
           <a href="#latest">Últimos textos</a>
           <a href="https://github.com/" target="_blank" rel="noopener">GitHub</a>
         </div>
-
-        <!-- Campo de busca -->
-        <div style="margin-top:16px; text-align:center;">
-          <input
-            id="postSearch"
-            type="text"
-            inputmode="numeric"
-            placeholder="Ir para o post nº (ex: 910)"
-            style="padding:8px 12px; border-radius:10px; border:1px solid rgba(255,255,255,.18);
-                   background:rgba(255,255,255,.06); color:var(--fg); width:220px; text-align:center;"
-          >
-          <button
-            id="postSearchBtn"
-            style="padding:8px 14px; border-radius:10px; background:rgba(255,255,255,.08);
-                   color:var(--accent); font-weight:600; border:none; cursor:pointer;"
-          >Ir</button>
-        </div>
-        <!-- /Campo de busca -->
       </div>
     </div>
   </header>
 
-  <!-- Aqui volta o layout centralizado -->
-  <main class="container" id="publicacoes">
+  <main class="container">
+    <!-- Campo de busca por número do post -->
+    <div style="text-align:center; margin-top:20px;">
+      <input 
+        type="number" 
+        id="postSearch" 
+        placeholder="Ir para o post nº (ex: 900)" 
+        style="padding:8px 12px; border-radius:10px; border:1px solid rgba(255,255,255,.2); background:rgba(255,255,255,.08); color:#fff; width:220px;"
+      >
+      <button 
+        id="postSearchBtn"
+        style="padding:8px 14px; border-radius:10px; background:rgba(255,255,255,.08); color:#ffd166; font-weight:600; border:none; cursor:pointer; margin-left:6px;"
+      >Ir</button>
+    </div>
 
-    <!-- SEU CONTEÚDO COMEÇA AQUI -->
-    <!-- Posts, seções, etc. -->
-    
-  </main>
+    <script>
+    (function(){
+      // Garante IDs únicos para cada post (agora aceita qualquer nº de dígitos)
+      function indexarPosts(){
+        const heads = document.querySelectorAll('h2.h1');
+        heads.forEach(h => {
+          const txt = (h.textContent || '').trim();
+          const m = txt.match(/^(\d+)\s*#/); // <— aqui a correção: aceita 1+ dígitos
+          if (m) {
+            const num = m[1];
+            if (!h.id) h.id = 'post' + num; // cria id="post900"
+            h.setAttribute('data-post-num', num);
+          }
+        });
+      }
 
-  <!-- Script no fim da página -->
-  <script>
-  (function(){
-    // Cria IDs nos h2.h1 com base no número antes do #
-    function indexarPosts(){
-      document.querySelectorAll('h2.h1').forEach(h => {
-        const txt = (h.textContent || '').trim();
-        const m = txt.match(/^(\d+)\s*#/); // aceita qualquer número de dígitos
-        if (m) {
-          const num = m[1];
-          if (!h.id || h.id !== 'post' + num) h.id = 'post' + num;
+      // Vai até o post solicitado
+      function goToPostNumber(numStr){
+        const num = String(numStr || '').trim();
+        if (!num) return;
+
+        if (!document.getElementById('post' + num)) indexarPosts();
+
+        const el = document.getElementById('post' + num);
+        if (el) {
+          if (history.pushState) { history.pushState(null, '', '#post' + num); }
+          else { location.hash = '#post' + num; }
+          el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        } else {
+          alert('Post ' + num + ' não encontrado.');
         }
+      }
+
+      document.addEventListener('DOMContentLoaded', () => {
+        indexarPosts(); // Indexa ao carregar
+
+        // Caso venha com hash (#postNNN)
+        if (location.hash && location.hash.startsWith('#post')) {
+          const alvo = document.querySelector(location.hash);
+          if (alvo) alvo.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        document.getElementById('postSearchBtn')
+          .addEventListener('click', () => goToPostNumber(document.getElementById('postSearch').value));
+
+        document.getElementById('postSearch')
+          .addEventListener('keydown', (e) => { if (e.key === 'Enter') goToPostNumber(e.target.value); });
       });
-    }
-
-    function irParaPost(numStr){
-      const num = String(numStr || '').replace(/[^\d]/g, '');
-      if (!num) return;
-
-      // Reindexa sempre
-      indexarPosts();
-
-      const alvo = document.getElementById('post' + num);
-      if (alvo) {
-        history.replaceState(null, '', '#post' + num);
-        alvo.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      } else {
-        alert('Post ' + num + ' não encontrado.');
-      }
-    }
-
-    document.addEventListener('DOMContentLoaded', () => {
-      indexarPosts();
-
-      // se abriu com #postNNN
-      if (location.hash && /^#post\d+$/.test(location.hash)) {
-        const alvo = document.querySelector(location.hash);
-        if (alvo) alvo.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
-
-      const input = document.getElementById('postSearch');
-      const btn   = document.getElementById('postSearchBtn');
-
-      if (btn && input) {
-        btn.addEventListener('click', () => irParaPost(input.value));
-        input.addEventListener('keydown', e => {
-          if (e.key === 'Enter') irParaPost(e.target.value);
-        });
-      }
-
-      // Corrige o botão “Últimos textos” para rolar até #latest
-      const linkUltimos = document.querySelector('a[href="#latest"]');
-      if (linkUltimos) {
-        linkUltimos.addEventListener('click', e => {
-          e.preventDefault();
-          const sec = document.querySelector('#latest');
-          if (sec) sec.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        });
-      }
-    });
-  })();
-  </script>
+    })();
+    </script>
+  </main>
 </body>
 </html>
 
