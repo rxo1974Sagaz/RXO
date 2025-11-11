@@ -29,15 +29,15 @@
           <a href="https://github.com/" target="_blank" rel="noopener">GitHub</a>
         </div>
 
-        <!-- CAMPO DE BUSCA -->
-        <div style="margin-top:16px; display:flex; gap:8px; align-items:center; justify-content:center;">
+        <!-- Campo de busca -->
+        <div style="margin-top:16px; text-align:center;">
           <input
             id="postSearch"
             type="text"
             inputmode="numeric"
             placeholder="Ir para o post nº (ex: 910)"
             style="padding:8px 12px; border-radius:10px; border:1px solid rgba(255,255,255,.18);
-                   background:rgba(255,255,255,.06); color:var(--fg); width:220px;"
+                   background:rgba(255,255,255,.06); color:var(--fg); width:220px; text-align:center;"
           >
           <button
             id="postSearchBtn"
@@ -45,67 +45,81 @@
                    color:var(--accent); font-weight:600; border:none; cursor:pointer;"
           >Ir</button>
         </div>
-        <!-- /CAMPO DE BUSCA -->
+        <!-- /Campo de busca -->
       </div>
     </div>
   </header>
 
-  <main class="container">
-    <!-- Seus posts ficam aqui -->
+  <!-- Aqui volta o layout centralizado -->
+  <main class="container" id="publicacoes">
 
-    <script>
-    (function(){
-      // Cria IDs nos h2.h1 com base no número antes do #
-      function indexarPosts(){
-        document.querySelectorAll('h2.h1').forEach(h => {
-          const txt = (h.textContent || '').trim();
-          // Aceita QUALQUER quantidade de dígitos (ex.: 7, 909, 1001, 12000)
-          const m = txt.match(/^(\d+)\s*#/);
-          if (m) {
-            const num = m[1];
-            if (!h.id || h.id !== 'post' + num) h.id = 'post' + num;
-          }
+    <!-- SEU CONTEÚDO COMEÇA AQUI -->
+    <!-- Posts, seções, etc. -->
+    
+  </main>
+
+  <!-- Script no fim da página -->
+  <script>
+  (function(){
+    // Cria IDs nos h2.h1 com base no número antes do #
+    function indexarPosts(){
+      document.querySelectorAll('h2.h1').forEach(h => {
+        const txt = (h.textContent || '').trim();
+        const m = txt.match(/^(\d+)\s*#/); // aceita qualquer número de dígitos
+        if (m) {
+          const num = m[1];
+          if (!h.id || h.id !== 'post' + num) h.id = 'post' + num;
+        }
+      });
+    }
+
+    function irParaPost(numStr){
+      const num = String(numStr || '').replace(/[^\d]/g, '');
+      if (!num) return;
+
+      // Reindexa sempre
+      indexarPosts();
+
+      const alvo = document.getElementById('post' + num);
+      if (alvo) {
+        history.replaceState(null, '', '#post' + num);
+        alvo.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      } else {
+        alert('Post ' + num + ' não encontrado.');
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      indexarPosts();
+
+      // se abriu com #postNNN
+      if (location.hash && /^#post\d+$/.test(location.hash)) {
+        const alvo = document.querySelector(location.hash);
+        if (alvo) alvo.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+
+      const input = document.getElementById('postSearch');
+      const btn   = document.getElementById('postSearchBtn');
+
+      if (btn && input) {
+        btn.addEventListener('click', () => irParaPost(input.value));
+        input.addEventListener('keydown', e => {
+          if (e.key === 'Enter') irParaPost(e.target.value);
         });
       }
 
-      function irParaPost(numStr){
-        const num = String(numStr || '').replace(/[^\d]/g, '');
-        if (!num) return;
-
-        // Reindexa SEMPRE que o usuário busca
-        indexarPosts();
-
-        const alvo = document.getElementById('post' + num);
-        if (alvo) {
-          history.replaceState(null, '', '#post' + num);
-          alvo.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        } else {
-          alert('Post ' + num + ' não encontrado.');
-        }
+      // Corrige o botão “Últimos textos” para rolar até #latest
+      const linkUltimos = document.querySelector('a[href="#latest"]');
+      if (linkUltimos) {
+        linkUltimos.addEventListener('click', e => {
+          e.preventDefault();
+          const sec = document.querySelector('#latest');
+          if (sec) sec.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
       }
-
-      document.addEventListener('DOMContentLoaded', () => {
-        indexarPosts();
-
-        // Se a página for aberta com #postNNN
-        if (location.hash && /^#post\d+$/.test(location.hash)) {
-          const alvo = document.querySelector(location.hash);
-          if (alvo) alvo.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
-
-        const input = document.getElementById('postSearch');
-        const btn   = document.getElementById('postSearchBtn');
-
-        if (btn && input) {
-          btn.addEventListener('click', () => irParaPost(input.value));
-          input.addEventListener('keydown', e => {
-            if (e.key === 'Enter') irParaPost(e.target.value);
-          });
-        }
-      });
-    })();
-    </script>
-  </main>
+    });
+  })();
+  </script>
 </body>
 </html>
 
