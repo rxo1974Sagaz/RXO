@@ -32,7 +32,9 @@
     </div>
   </header>
 
+  <!-- IMPORTANTE: deixe este <main> ABERTO até depois dos seus posts -->
   <main class="container">
+
     <!-- Campo de busca por número do post -->
     <div style="text-align:center; margin-top:20px;">
       <input 
@@ -52,13 +54,12 @@
 
     <script>
     (function(){
-      // Cria IDs baseados no número antes do "#"
+      // Indexa os posts criando id="postNNN" baseado no "NNN#" do título H2
       function indexarPosts() {
         const heads = document.querySelectorAll('h2.h1');
         heads.forEach(h => {
           const texto = (h.textContent || '').trim();
-          // agora aceita qualquer número de dígitos
-          const match = texto.match(/^(\d+)\s*#/);
+          const match = texto.match(/^(\d+)\s*#/); // aceita qualquer nº de dígitos
           if (match) {
             const numero = match[1];
             h.dataset.postNum = numero;
@@ -67,7 +68,6 @@
         });
       }
 
-      // Rola suavemente até o post indicado
       function irParaPost(numeroStr) {
         const numero = String(numeroStr || '').trim();
         if (!numero) return;
@@ -88,7 +88,6 @@
       document.addEventListener('DOMContentLoaded', () => {
         indexarPosts();
 
-        // Se abriu a página com um hash (#postNNN), rola até ele
         if (location.hash && /^#post\d+$/.test(location.hash)) {
           const alvo = document.querySelector(location.hash);
           if (alvo) alvo.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -104,9 +103,12 @@
       });
     })();
     </script>
-  </main>
-</body>
-</html>
+
+    <!-- A PARTIR DAQUI entram seus posts (h2.h1, etc.) DENTRO do mesmo <main class="container"> -->
+    <!-- ... seus posts ... -->
+
+    <!-- Só feche o main DEPOIS de todos os posts -->
+    <!-- </main> e </body> ficam no final do documento -->
 
 <!-- SOBRE -->
     <section id="sobre" class="section grid">
