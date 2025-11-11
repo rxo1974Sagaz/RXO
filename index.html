@@ -38,62 +38,69 @@
       <input 
         type="number" 
         id="postSearch" 
-        placeholder="Ir para o post nº (ex: 900)" 
-        style="padding:8px 12px; border-radius:10px; border:1px solid rgba(255,255,255,.2); background:rgba(255,255,255,.08); color:#fff; width:220px;"
+        placeholder="Ir para o post nº (ex: 910)" 
+        min="1" step="1"
+        style="padding:8px 12px; border-radius:10px; border:1px solid rgba(255,255,255,.2);
+               background:rgba(255,255,255,.08); color:#fff; width:220px;"
       >
       <button 
         id="postSearchBtn"
-        style="padding:8px 14px; border-radius:10px; background:rgba(255,255,255,.08); color:#ffd166; font-weight:600; border:none; cursor:pointer; margin-left:6px;"
+        style="padding:8px 14px; border-radius:10px; background:rgba(255,255,255,.08);
+               color:#ffd166; font-weight:600; border:none; cursor:pointer; margin-left:6px;"
       >Ir</button>
     </div>
 
     <script>
     (function(){
-      // Garante IDs únicos para cada post (agora aceita qualquer nº de dígitos)
-      function indexarPosts(){
+      // Cria IDs baseados no número antes do "#"
+      function indexarPosts() {
         const heads = document.querySelectorAll('h2.h1');
         heads.forEach(h => {
-          const txt = (h.textContent || '').trim();
-          const m = txt.match(/^(\d+)\s*#/); // <— aqui a correção: aceita 1+ dígitos
-          if (m) {
-            const num = m[1];
-            if (!h.id) h.id = 'post' + num; // cria id="post900"
-            h.setAttribute('data-post-num', num);
+          const texto = (h.textContent || '').trim();
+          // agora aceita qualquer número de dígitos
+          const match = texto.match(/^(\d+)\s*#/);
+          if (match) {
+            const numero = match[1];
+            h.dataset.postNum = numero;
+            if (!h.id) h.id = 'post' + numero;
           }
         });
       }
 
-      // Vai até o post solicitado
-      function goToPostNumber(numStr){
-        const num = String(numStr || '').trim();
-        if (!num) return;
+      // Rola suavemente até o post indicado
+      function irParaPost(numeroStr) {
+        const numero = String(numeroStr || '').trim();
+        if (!numero) return;
 
-        if (!document.getElementById('post' + num)) indexarPosts();
+        if (!document.getElementById('post' + numero)) indexarPosts();
 
-        const el = document.getElementById('post' + num);
-        if (el) {
-          if (history.pushState) { history.pushState(null, '', '#post' + num); }
-          else { location.hash = '#post' + num; }
-          el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        const alvo = document.getElementById('post' + numero) 
+                  || document.querySelector(`h2.h1[data-post-num="${numero}"]`);
+        if (alvo) {
+          if (!alvo.id) alvo.id = 'post' + numero;
+          history.pushState(null, '', '#post' + numero);
+          alvo.scrollIntoView({ behavior: 'smooth', block: 'start' });
         } else {
-          alert('Post ' + num + ' não encontrado.');
+          alert('Post ' + numero + ' não encontrado.');
         }
       }
 
       document.addEventListener('DOMContentLoaded', () => {
-        indexarPosts(); // Indexa ao carregar
+        indexarPosts();
 
-        // Caso venha com hash (#postNNN)
-        if (location.hash && location.hash.startsWith('#post')) {
+        // Se abriu a página com um hash (#postNNN), rola até ele
+        if (location.hash && /^#post\d+$/.test(location.hash)) {
           const alvo = document.querySelector(location.hash);
           if (alvo) alvo.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
 
-        document.getElementById('postSearchBtn')
-          .addEventListener('click', () => goToPostNumber(document.getElementById('postSearch').value));
+        const input = document.getElementById('postSearch');
+        const botao = document.getElementById('postSearchBtn');
 
-        document.getElementById('postSearch')
-          .addEventListener('keydown', (e) => { if (e.key === 'Enter') goToPostNumber(e.target.value); });
+        botao.addEventListener('click', () => irParaPost(input.value));
+        input.addEventListener('keydown', e => {
+          if (e.key === 'Enter') irParaPost(e.target.value);
+        });
       });
     })();
     </script>
