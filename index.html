@@ -18,9 +18,8 @@
         <span class="badge">RXO • Engenharia & Liderança</span>
         <h1 class="title">Racionalidade Aplicada!</h1>
         <p class="subtitle">
-          Diretor de Operações e Manufatura com mais de 30 anos nas indústrias de alimentos, química, fármacos e nutrição animal. 
-          Engenheiro de Alimentos e Químico, pós-graduado em Engenharia de Processos Químicos pela Unicamp e com MBA em Gestão Industrial pelo IEL-PE. 
-          Líder pragmático e ético — orientado a dados, simplicidade operacional, Segurança, inovação de processos e melhoria contínua.
+          Diretor de Manufatura com 32 anos de experiência nas indústrias de Alimentos e Química. 
+          Profissional que alia conhecimento técnico e gestão humana, conduzindo recursos e pessoas com racionalidade, ética e foco em resultados sustentáveis.
         </p>
         <div class="nav">
           <a href="#sobre">Sobre</a>
@@ -33,33 +32,83 @@
     </div>
   </header>
 
+  <!-- IMPORTANTE: deixe este <main> ABERTO até depois dos seus posts -->
   <main class="container">
 
-    <!-- SOBRE -->
-    <section id="sobre" class="section grid">
-      <div class="card">
-        <h2 class="h1">Sobre RXO </h2>
-        <p>
-          Ricardo Xavier de Oliveira
-          <p>
-          Diretor de Operações e Manufatura com mais de 30 anos nas indústrias de alimentos, química, fármacos e nutrição animal. 
-          Engenheiro de Alimentos e Químico, pós-graduado em Engenharia de Processos pela Unicamp e com MBA em Gestão Industrial pelo IEL-PE. 
-          Líder pragmático e ético — orientado a dados, simplicidade operacional, Segurança, inovação de processos e melhoria contínua.
-        </p>
-        <p class="muted">
-          Linha editorial: clareza, mérito, responsabilidade pessoal e simplicidade operacional.
-        </p>
-      </div>
+    <!-- Campo de busca por número do post -->
+    <div style="text-align:center; margin-top:20px;">
+      <input 
+        type="number" 
+        id="postSearch" 
+        placeholder="Ir para o post nº (ex: 910)" 
+        min="1" step="1"
+        style="padding:8px 12px; border-radius:10px; border:1px solid rgba(255,255,255,.2);
+               background:rgba(255,255,255,.08); color:#fff; width:220px;"
+      >
+      <button 
+        id="postSearchBtn"
+        style="padding:8px 14px; border-radius:10px; background:rgba(255,255,255,.08);
+               color:#ffd166; font-weight:600; border:none; cursor:pointer; margin-left:6px;"
+      >Ir</button>
+    </div>
 
-      <div class="card">
-        <h2 class="h1">Contato</h2>
-        <p>
-          E-mail: <a href="mailto:rxo1974@gmail.com">rxo1974@gmail.com</a><br>
-          LinkedIn: <a href="https://www.linkedin.com/in/rxoliveira/" target="_blank" rel="noopener">linkedin.com/in/rxoliveira</a>
-        </p>
-        <p class="muted">Links atualizados.</p>
-      </div>
-    </section>
+    <script>
+    (function(){
+      // Indexa os posts criando id="postNNN" baseado no "NNN#" do título H2
+      function indexarPosts() {
+        const heads = document.querySelectorAll('h2.h1');
+        heads.forEach(h => {
+          const texto = (h.textContent || '').trim();
+          const match = texto.match(/^(\d+)\s*#/); // aceita qualquer nº de dígitos
+          if (match) {
+            const numero = match[1];
+            h.dataset.postNum = numero;
+            if (!h.id) h.id = 'post' + numero;
+          }
+        });
+      }
+
+      function irParaPost(numeroStr) {
+        const numero = String(numeroStr || '').trim();
+        if (!numero) return;
+
+        if (!document.getElementById('post' + numero)) indexarPosts();
+
+        const alvo = document.getElementById('post' + numero) 
+                  || document.querySelector(`h2.h1[data-post-num="${numero}"]`);
+        if (alvo) {
+          if (!alvo.id) alvo.id = 'post' + numero;
+          history.pushState(null, '', '#post' + numero);
+          alvo.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        } else {
+          alert('Post ' + numero + ' não encontrado.');
+        }
+      }
+
+      document.addEventListener('DOMContentLoaded', () => {
+        indexarPosts();
+
+        if (location.hash && /^#post\d+$/.test(location.hash)) {
+          const alvo = document.querySelector(location.hash);
+          if (alvo) alvo.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        const input = document.getElementById('postSearch');
+        const botao = document.getElementById('postSearchBtn');
+
+        botao.addEventListener('click', () => irParaPost(input.value));
+        input.addEventListener('keydown', e => {
+          if (e.key === 'Enter') irParaPost(e.target.value);
+        });
+      });
+    })();
+    </script>
+
+    <!-- A PARTIR DAQUI entram seus posts (h2.h1, etc.) DENTRO do mesmo <main class="container"> -->
+    <!-- ... seus posts ... -->
+
+    <!-- Só feche o main DEPOIS de todos os posts -->
+    <!-- </main> e </body> ficam no final do documento -->
 
     <!-- PUBLICAÇÕES -->
     <section id="publicacoes" class="section">
