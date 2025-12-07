@@ -60,11 +60,11 @@ a:hover{text-decoration:underline}
 }
 
 .hero-content{
-  position:absolute; left:0; right:0; top:16px; /* <-- ANCORA NO TOPO */
+  position:absolute; left:0; right:0; top:16px;
   padding:32px; z-index:1; color:#fff;
 }
 
-/* Título/Subtítulo (com correção para mobile não “comer” palavras) */
+/* Título/Subtítulo */
 .title{
   font-size:clamp(28px,4vw,44px);
   line-height:1.18;
@@ -152,7 +152,32 @@ footer{
   .nav{gap:8px}
 }
 
-/* ajuste fino: move o foco da imagem para o topo no mobile */
+/* foco da imagem no topo no mobile */
 @media (max-width:520px){
   :root{ --hero-y:0%; }
+}
+
+/* ============================================
+   BLOCO NOVO — Sugestão de leitura do dia
+   ============================================ */
+.sugestao-card {
+  width:260px;
+  min-height:120px;
+  padding:16px;
+  background:var(--card);
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:14px;
+  box-shadow:0 10px 24px rgba(0,0,0,.18);
+}
+
+.sugestao-card h3 {
+  margin:10px 0;
+  font-size:17px;
+  color:var(--fg);
+}
+
+@media (max-width:700px){
+  .sugestao-card{
+    width:100%;
+  }
 }
