@@ -38,7 +38,6 @@
     </div>
   </header>
 
-  <!-- IMPORTANTE: deixe este <main> ABERTO até depois dos seus posts -->
   <main class="container">
 
     <!-- Campo de busca por número do post -->
@@ -60,12 +59,11 @@
 
     <script>
     (function(){
-      // Indexa os posts criando id="postNNN" baseado no "NNN#" do título H2
       function indexarPosts() {
         const heads = document.querySelectorAll('h2.h1');
         heads.forEach(h => {
           const texto = (h.textContent || '').trim();
-          const match = texto.match(/^(\d+)\s*#/); // aceita qualquer nº de dígitos
+          const match = texto.match(/^(\d+)\s*#/);
           if (match) {
             const numero = match[1];
             h.dataset.postNum = numero;
@@ -110,11 +108,13 @@
     })();
     </script>
 
-    <!-- A PARTIR DAQUI entram seus posts (h2.h1, etc.) DENTRO do mesmo <main class="container"> -->
-    <!-- ... seus posts ... -->
+    <!-- Sugestão de Leitura do Dia -->
+    <aside class="sugestao-card" id="sugestao">
+      <div class="muted" style="margin-bottom:6px;">Sugestão de leitura do dia</div>
+      <h3 id="sugestao-titulo">Carregando...</h3>
+    </aside>
 
-    <!-- Só feche o main DEPOIS de todos os posts -->
-    <!-- </main> e </body> ficam no final do documento -->
+    <!-- A PARTIR DAQUI entram seus posts (h2.h1, etc.) -->
 
     <!-- SOBRE -->
     <section id="sobre" class="section grid">
@@ -122,7 +122,8 @@
         <h2 class="h1">Sobre RXO </h2>
         <p>
           Ricardo Xavier de Oliveira
-          <p>
+        </p>
+        <p>
           Diretor de Operações e Manufatura com mais de 30 anos nas indústrias de alimentos, química, fármacos e nutrição animal. 
           Químico e Engenheiro de Alimentos, pós-graduado em Engenharia de Processos pela Unicamp e com MBA em Gestão Industrial pelo IEL-PE. 
           Líder pragmático e ético — orientado a dados, simplicidade operacional, Segurança, inovação de processos e melhoria contínua. Meus textos falam muito do que penso e acredito.
@@ -132,26 +133,20 @@
         </p>
       </div>
 
-<head>
-  <!-- Incluindo o link para o Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-</head>
-
-<div class="card">
-  <h2 class="h1">Contato</h2>
-  <p>
-<i class="fab fa-google"></i> E-mail: <a href="mailto:rxo1974@gmail.com">rxo1974@gmail.com</a><br>
-<i class="fab fa-linkedin"></i> LinkedIn: <a href="https://www.linkedin.com/in/rxoliveira/" target="_blank" rel="noopener">linkedin.com/in/rxoliveira</a><br>
-<i class="fab fa-x"></i> Twitter: <a href="https://x.com/rxo1974" target="_blank" rel="noopener">@rxo1974</a><br>
-<i class="fab fa-instagram"></i> Instagram: <a href="https://www.instagram.com/xavierdeoliveiraricardo/" target="_blank" rel="noopener">@xavierdeoliveiraricardo</a><br>
-<i class="fab fa-whatsapp"></i> WhatsApp: <a href="https://wa.me/573102135543" target="_blank" rel="noopener">+57 310 213 5543</a><br>
-<i class="fas fa-file-alt"></i> Currículo Vitae:
-<a href="https://drive.google.com/file/d/1bVpZlIG8Xcn_v7HZ46PrRp8ukrjyXUpQ/view?usp=sharing" 
-   target="_blank" rel="noopener">CV - RXO </a><br>
-    
-  <p class="muted">Links atualizados.</p>
-</div>
-
+      <div class="card">
+        <h2 class="h1">Contato</h2>
+        <p>
+          <i class="fab fa-google"></i> E-mail: <a href="mailto:rxo1974@gmail.com">rxo1974@gmail.com</a><br>
+          <i class="fab fa-linkedin"></i> LinkedIn: <a href="https://www.linkedin.com/in/rxoliveira/" target="_blank" rel="noopener">linkedin.com/in/rxoliveira</a><br>
+          <i class="fab fa-x"></i> Twitter: <a href="https://x.com/rxo1974" target="_blank" rel="noopener">@rxo1974</a><br>
+          <i class="fab fa-instagram"></i> Instagram: <a href="https://www.instagram.com/xavierdeoliveiraricardo/" target="_blank" rel="noopener">@xavierdeoliveiraricardo</a><br>
+          <i class="fab fa-whatsapp"></i> WhatsApp: <a href="https://wa.me/573102135543" target="_blank" rel="noopener">+57 310 213 5543</a><br>
+          <i class="fas fa-file-alt"></i> Currículo Vitae:
+          <a href="https://drive.google.com/file/d/1bVpZlIG8Xcn_v7HZ46PrRp8ukrjyXUpQ/view?usp=sharing" 
+            target="_blank" rel="noopener">CV - RXO</a><br>
+        </p>
+        <p class="muted">Links atualizados.</p>
+      </div>
     </section>
 
     <!-- PUBLICAÇÕES -->
