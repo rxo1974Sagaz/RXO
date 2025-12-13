@@ -185,3 +185,32 @@ footer{
     width:100%;
   }
 }
+/* ============================================
+   Assinatura RXO — Hero
+   ============================================ */
+.hero-signature{
+  position:absolute;
+  top:26px;
+  right:30px;
+
+  width:140px;
+  max-width:35vw;
+
+  opacity:0.55;
+  filter:brightness(1.05);
+
+  pointer-events:none;
+  user-select:none;
+
+  z-index:2;
+}
+
+/* Ajuste mobile */
+@media (max-width:520px){
+  .hero-signature{
+    width:100px;
+    top:18px;
+    right:18px;
+    opacity:0.45;
+  }
+}
