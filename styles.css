@@ -253,3 +253,38 @@ footer{
   .sugestao-card{ width:100% }
 }
 
+/* Assinatura RXOliveira na HERO – somente CSS */
+.hero {
+  position: relative;
+}
+
+.hero::after {
+  content: "𝓡𝓧𝓞𝓵𝒾𝓋𝓮𝒾𝓇𝒶̶̴̷";
+
+  position: absolute;
+  top: 28px;
+  right: 40px;
+
+  font-family: "Times New Roman", Georgia, serif;
+  font-size: 28px;
+  font-weight: normal;
+  letter-spacing: 1.2px;
+
+  color: var(--accent);
+  opacity: 0.95;
+
+  transform: skewX(-6deg);
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+/* Ajuste Mobile */
+@media (max-width: 520px) {
+  .hero::after {
+    top: 16px;
+    right: 20px;
+    font-size: 22px;
+    opacity: 0.85;
+  }
+}
+
