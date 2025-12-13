@@ -252,7 +252,7 @@ footer{
 @media (max-width:700px){
   .sugestao-card{ width:100% }
 }
-/* Assinatura RXOliveira na HERO – somente CSS */
+/* Assinatura RXOliveira na HERO – lado direito da tela */
 .hero {
   position: relative;
 }
@@ -262,7 +262,7 @@ footer{
 
   position: absolute;
   top: 28px;
-  left: 40px;   /* ← lado oposto */
+  right: 40px; /* 👉 LADO DIREITO PARA QUEM VÊ */
 
   font-family: "Times New Roman", Georgia, serif;
   font-size: 28px;
@@ -281,7 +281,7 @@ footer{
 @media (max-width: 520px) {
   .hero::after {
     top: 16px;
-    left: 20px;   /* ← lado oposto no mobile */
+    right: 20px; /* 👉 LADO DIREITO NO MOBILE */
     font-size: 22px;
     opacity: 0.85;
   }
