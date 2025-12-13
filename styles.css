@@ -252,17 +252,23 @@ footer{
 @media (max-width:700px){
   .sugestao-card{ width:100% }
 }
-/* Assinatura RXOliveira – lado direito do VIEWPORT */
+/* Assinatura RXOliveira – dentro do CARD da HERO, lado direito */
+.hero {
+  position: relative;
+}
+
 .hero::after {
   content: "𝓡𝓧𝓞𝓵𝒾𝓋𝓮𝒾𝓇𝒶̶̴̷";
 
-  position: fixed;          /* ← CHAVE DA SOLUÇÃO */
-  top: 28px;
-  right: 40px;              /* ← DIREITA DE QUEM VÊ */
+  position: absolute;
+  top: 24px;
 
+  right: 32px;
+  left: auto !important;   /* ← MATA qualquer herança */
+  
   font-family: "Times New Roman", Georgia, serif;
-  font-size: 28px;
-  letter-spacing: 1.2px;
+  font-size: 26px;
+  letter-spacing: 1.1px;
 
   color: var(--accent);
   opacity: 0.95;
@@ -270,17 +276,15 @@ footer{
   transform: skewX(-6deg);
   pointer-events: none;
   white-space: nowrap;
-  z-index: 50;
+  z-index: 5;
 }
 
 /* Mobile */
 @media (max-width: 520px) {
   .hero::after {
     top: 16px;
-    right: 20px;
-    font-size: 22px;
+    right: 18px;
+    font-size: 21px;
     opacity: 0.85;
   }
 }
-
-
