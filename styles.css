@@ -252,21 +252,16 @@ footer{
 @media (max-width:700px){
   .sugestao-card{ width:100% }
 }
-/* Assinatura RXOliveira na HERO – lado direito da tela */
-.hero {
-  position: relative;
-}
-
+/* Assinatura RXOliveira – lado direito do VIEWPORT */
 .hero::after {
   content: "𝓡𝓧𝓞𝓵𝒾𝓋𝓮𝒾𝓇𝒶̶̴̷";
 
-  position: absolute;
+  position: fixed;          /* ← CHAVE DA SOLUÇÃO */
   top: 28px;
-  right: 40px; /* 👉 LADO DIREITO PARA QUEM VÊ */
+  right: 40px;              /* ← DIREITA DE QUEM VÊ */
 
   font-family: "Times New Roman", Georgia, serif;
   font-size: 28px;
-  font-weight: normal;
   letter-spacing: 1.2px;
 
   color: var(--accent);
@@ -275,13 +270,14 @@ footer{
   transform: skewX(-6deg);
   pointer-events: none;
   white-space: nowrap;
+  z-index: 50;
 }
 
-/* Ajuste Mobile */
+/* Mobile */
 @media (max-width: 520px) {
   .hero::after {
     top: 16px;
-    right: 20px; /* 👉 LADO DIREITO NO MOBILE */
+    right: 20px;
     font-size: 22px;
     opacity: 0.85;
   }
