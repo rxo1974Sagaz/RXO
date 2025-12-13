@@ -261,16 +261,21 @@ footer{
   top: 32px;
   right: 48px;
   width: 260px;
-  opacity: 0.35;
+  opacity: 0.55;              /* mais presença */
   pointer-events: none;
+  mix-blend-mode: screen;     /* FUNDAMENTAL: mistura com a imagem */
 }
 
 .hero-signature img {
   width: 100%;
   height: auto;
+  filter:
+    saturate(1.35)            /* reforça o amarelo */
+    brightness(1.05)          /* clareia sem estourar */
+    contrast(1.1);            /* define o traço */
 }
 
-/* Esconder assinatura no mobile */
+/* Esconder no mobile */
 @media (max-width: 520px) {
   .hero-signature {
     display: none;
