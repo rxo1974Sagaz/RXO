@@ -252,3 +252,28 @@ footer{
 @media (max-width:700px){
   .sugestao-card{ width:100% }
 }
+/* =========================
+   Assinatura no HERO
+   ========================= */
+
+.hero-signature {
+  position: absolute;
+  top: 32px;
+  right: 48px;
+  width: 260px;
+  opacity: 0.35;
+  pointer-events: none;
+}
+
+.hero-signature img {
+  width: 100%;
+  height: auto;
+}
+
+/* Esconder assinatura no mobile */
+@media (max-width: 520px) {
+  .hero-signature {
+    display: none;
+  }
+}
+
