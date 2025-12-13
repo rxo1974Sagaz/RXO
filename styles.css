@@ -1,9 +1,10 @@
-/* update 2 — preparado para assinatura */
+/* update 1 */
 
 /* =========================
-   VARIÁVEIS GLOBAIS
+   VARIÁVEIS
    ========================= */
 :root{
+  /* Tema */
   --bg:#0b0d12;
   --fg:#e6e6e6;
   --muted:#9aa4b2;
@@ -11,32 +12,42 @@
   --card:#131722;
   --max:900px;
 
-  /* HERO */
-  --hero-height:56vh;
-  --hero-x:50%;
-  --hero-y:5%;
-  --hero-size:cover;
+  /* Capa (controles) */
+  --hero-height:56vh;     /* altura da capa */
+  --hero-x:50%;           /* 0% esquerda | 50% centro | 100% direita */
+  --hero-y:5%;            /* 0% topo    | 50% centro | 100% base   */
+  --hero-size:cover;      /* cover = preenche (pode cortar) | contain = não corta */
 
-  /* Overlay */
-  --overlay-top:0.06;
-  --overlay-bottom:0.60;
+  /* Gradiente da capa */
+  --overlay-top:0.06;     /* 0–1 (escurece topo)   */
+  --overlay-bottom:0.60;  /* 0–1 (escurece base)   */
 }
 
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
+/* =========================
+   BASE
+   ========================= */
+*{ box-sizing:border-box }
+
+html{ scroll-behavior:smooth }
+
 html,body{
-  margin:0; padding:0;
-  background:var(--bg); color:var(--fg);
+  margin:0;
+  padding:0;
+  background:var(--bg);
+  color:var(--fg);
   font:16px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,Ubuntu,"Helvetica Neue",Arial;
 }
 
-a{color:var(--accent);text-decoration:none}
-a:hover{text-decoration:underline}
+a{
+  color:var(--accent);
+  text-decoration:none;
+}
+a:hover{ text-decoration:underline }
 
 .container{
   max-width:var(--max);
   margin:0 auto;
-  padding:10px 24px 24px;
+  padding:10px 24px 24px; /* top | lados | bottom */
 }
 
 /* =========================
@@ -51,18 +62,18 @@ a:hover{text-decoration:underline}
   overflow:hidden;
   box-shadow:0 10px 30px rgba(0,0,0,.35);
 
-  background:#000 url('assets/images/cover.png') no-repeat;
-  background-size:var(--hero-size);
-  background-position:var(--hero-x) var(--hero-y);
+  background-color:#000;
+  background-image:url('assets/images/cover.png');
+  background-repeat:no-repeat;
+  background-size:var(--hero-size) !important;
+  background-position:var(--hero-x) var(--hero-y) !important;
 }
 
-/* Overlay SEMPRE passivo */
 .hero::after{
   content:"";
   position:absolute;
   inset:0;
   pointer-events:none;
-  z-index:1;
   background:linear-gradient(
     180deg,
     rgba(0,0,0,var(--overlay-top)) 0%,
@@ -70,45 +81,18 @@ a:hover{text-decoration:underline}
   );
 }
 
-/* Conteúdo sempre acima do overlay */
 .hero-content{
   position:absolute;
-  inset:0;
+  left:0;
+  right:0;
+  top:16px;
   padding:32px;
-  z-index:3;
+  z-index:1;
   color:#fff;
 }
 
 /* =========================
-   ASSINATURA (slot oficial)
-   ========================= */
-.hero-signature{
-  position:absolute;
-  top:22px;
-  right:28px;
-
-  width:130px;
-  max-width:35vw;
-
-  /* converte a assinatura para o amarelo do tema */
-  filter:
-    brightness(0)
-    saturate(100%)
-    invert(72%)
-    sepia(98%)
-    saturate(600%)
-    hue-rotate(355deg);
-
-  opacity:0.7;
-
-  pointer-events:none;
-  user-select:none;
-
-  z-index:4; /* acima de tudo */
-}
-
-/* =========================
-   TIPOGRAFIA HERO
+   TÍTULO / SUBTÍTULO
    ========================= */
 .title{
   font-size:clamp(28px,4vw,44px);
@@ -116,16 +100,21 @@ a:hover{text-decoration:underline}
   font-weight:800;
   margin:10px 0 6px;
   text-shadow:0 2px 8px rgba(0,0,0,.35);
+  white-space:normal;
+  overflow-wrap:break-word;
+  word-break:normal;
+  hyphens:auto;
 }
+
 .subtitle{
   font-size:clamp(14px,2.3vw,18px);
-  max-width:800px;
   color:#e9eef7;
+  max-width:800px;
   text-shadow:0 2px 8px rgba(0,0,0,.25);
 }
 
 /* =========================
-   BADGE + NAV
+   BADGE / NAV
    ========================= */
 .badge{
   display:inline-block;
@@ -142,6 +131,7 @@ a:hover{text-decoration:underline}
   gap:10px;
   margin-top:12px;
 }
+
 .nav a{
   padding:8px 12px;
   border-radius:10px;
@@ -151,7 +141,8 @@ a:hover{text-decoration:underline}
 /* =========================
    SEÇÕES / CARDS
    ========================= */
-.section{margin-top:40px}
+.section{ margin-top:40px }
+
 .card{
   background:var(--card);
   border:1px solid rgba(255,255,255,.06);
@@ -160,34 +151,57 @@ a:hover{text-decoration:underline}
   box-shadow:0 10px 24px rgba(0,0,0,.18);
 }
 
+/* Grid “Sobre” */
 .grid{
   display:grid;
   gap:18px;
   grid-template-columns:1fr;
 }
+
 @media (min-width:860px){
-  .grid{grid-template-columns:1.1fr .9fr}
+  .grid{
+    grid-template-columns:1.1fr .9fr;
+  }
 }
 
-.h1{font-size:26px;margin:0 0 10px}
-.muted{color:var(--muted)}
+/* =========================
+   TIPOGRAFIA / MÍDIA
+   ========================= */
+.h1{
+  font-size:26px;
+  margin:0 0 10px;
+}
+
+.muted{ color:var(--muted) }
 
 .post img{
   width:100%;
+  height:auto;
   border-radius:12px;
   margin:4px 0 14px;
   box-shadow:0 10px 24px rgba(0,0,0,.25);
 }
 
+/* Vídeos */
 .post iframe{
+  display:block;
   width:100%;
   height:450px;
   border:0;
 }
 
 /* =========================
-   FOOTER
+   CITAÇÕES / FOOTER
    ========================= */
+blockquote{
+  border-left:4px solid var(--accent);
+  margin:16px 0;
+  padding:8px 14px;
+  color:#f5f5f5;
+  background:rgba(255,209,102,.06);
+  border-radius:8px;
+}
+
 footer{
   margin:40px 0 20px;
   color:var(--muted);
@@ -199,18 +213,20 @@ footer{
    MOBILE
    ========================= */
 @media (max-width:520px){
-  .hero{height:52vh}
-  .title{font-size:26px;line-height:1.22}
-  .post iframe{height:240px}
-  .nav{gap:8px}
-
-  .hero-signature{
-    width:95px;
-    top:16px;
-    right:16px;
-    opacity:0.55;
+  .hero{
+    height:52vh;
+    min-height:360px;
   }
+  .title{
+    font-size:26px;
+    line-height:1.22;
+  }
+  .post iframe{ height:240px }
+  .nav{ gap:8px }
+}
 
+/* foco da imagem no topo no mobile */
+@media (max-width:520px){
   :root{ --hero-y:0%; }
 }
 
@@ -226,11 +242,13 @@ footer{
   border-radius:14px;
   box-shadow:0 10px 24px rgba(0,0,0,.18);
 }
+
 .sugestao-card h3{
   margin:10px 0;
   font-size:17px;
   color:var(--fg);
 }
+
 @media (max-width:700px){
-  .sugestao-card{width:100%}
+  .sugestao-card{ width:100% }
 }
