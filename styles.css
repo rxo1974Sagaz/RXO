@@ -252,31 +252,3 @@ footer{
 @media (max-width:700px){
   .sugestao-card{ width:100% }
 }
-/* =========================
-   Assinatura RXO
-   ========================= */
-
-.signature {
-  max-width: 420px;
-  margin: 2.5rem auto 0;
-  opacity: 0.9;
-  display: flex;
-  justify-content: center;
-  pointer-events: none;
-}
-
-.signature img {
-  width: 100%;
-  height: auto;
-  filter: drop-shadow(0 0 6px rgba(255, 209, 102, 0.15));
-}
-
-@media (max-width: 520px) {
-  .signature {
-    max-width: 300px;
-    margin-top: 2rem;
-    opacity: 0.85;
-  }
-}
-
-
