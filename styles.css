@@ -252,7 +252,6 @@ footer{
 @media (max-width:700px){
   .sugestao-card{ width:100% }
 }
-
 /* Assinatura RXOliveira na HERO – somente CSS */
 .hero {
   position: relative;
@@ -263,7 +262,7 @@ footer{
 
   position: absolute;
   top: 28px;
-  right: 40px;
+  left: 40px;   /* ← lado oposto */
 
   font-family: "Times New Roman", Georgia, serif;
   font-size: 28px;
@@ -282,9 +281,10 @@ footer{
 @media (max-width: 520px) {
   .hero::after {
     top: 16px;
-    right: 20px;
+    left: 20px;   /* ← lado oposto no mobile */
     font-size: 22px;
     opacity: 0.85;
   }
 }
+
 
