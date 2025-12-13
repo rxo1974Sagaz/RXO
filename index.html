@@ -20,6 +20,14 @@
 
   <header class="header container">
     <div class="hero">
+
+      <!-- Assinatura RXO (alto direito, accent) -->
+      <img
+        src="assets/images/assinatura.png"
+        alt=""
+        class="hero-signature"
+      />
+
       <div class="hero-content">
         <span class="badge">RXO • Engenharia & Liderança</span>
 
@@ -39,196 +47,9 @@
           <a href="https://github.com/" target="_blank" rel="noopener">GitHub</a>
         </div>
       </div>
+
     </div>
   </header>
-
-  <main class="container">
-
-    <!-- Campo de busca por número do post -->
-    <div style="text-align:center; margin-top:20px;">
-      <input
-        type="number"
-        id="postSearch"
-        placeholder="Ir para o post nº (ex: 910)"
-        min="1"
-        step="1"
-        style="padding:8px 12px; border-radius:10px; border:1px solid rgba(255,255,255,.2);
-               background:rgba(255,255,255,.08); color:#fff; width:220px;">
-
-      <button
-        id="postSearchBtn"
-        style="padding:8px 14px; border-radius:10px; background:rgba(255,255,255,.08);
-               color:#ffd166; font-weight:600; border:none; cursor:pointer; margin-left:6px;">
-        Ir
-      </button>
-    </div>
-
-    <script>
-    (function(){
-      function indexarPosts() {
-        const heads = document.querySelectorAll('h2.h1');
-        heads.forEach(h => {
-          const texto = (h.textContent || '').trim();
-          const match = texto.match(/^(\d+)\s*#/);
-          if (match) {
-            const numero = match[1];
-            h.dataset.postNum = numero;
-            if (!h.id) h.id = 'post' + numero;
-          }
-        });
-      }
-
-      function irParaPost(numeroStr) {
-        const numero = String(numeroStr || '').trim();
-        if (!numero) return;
-
-        if (!document.getElementById('post' + numero)) indexarPosts();
-
-        const alvo =
-          document.getElementById('post' + numero) ||
-          document.querySelector(`h2.h1[data-post-num="${numero}"]`);
-
-        if (alvo) {
-          if (!alvo.id) alvo.id = 'post' + numero;
-          history.pushState(null, '', '#post' + numero);
-          alvo.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        } else {
-          alert('Post ' + numero + ' não encontrado.');
-        }
-      }
-
-      document.addEventListener('DOMContentLoaded', () => {
-        indexarPosts();
-
-        if (location.hash && /^#post\d+$/.test(location.hash)) {
-          const alvo = document.querySelector(location.hash);
-          if (alvo) alvo.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
-
-        const input = document.getElementById('postSearch');
-        const botao = document.getElementById('postSearchBtn');
-
-        botao.addEventListener('click', () => irParaPost(input.value));
-        input.addEventListener('keydown', e => {
-          if (e.key === 'Enter') irParaPost(e.target.value);
-        });
-      });
-    })();
-    </script>
-
-    <!-- 3 Sugestões de Leitura do Dia -->
-    <div class="sugestoes-grid" style="display:flex; gap:20px; margin:30px 0; flex-wrap:wrap;">
-
-      <aside class="sugestao-card" style="flex:1; min-width:260px;">
-        <div class="muted" style="margin-bottom:6px;">Sugestão de Leitura 1</div>
-        <h3 id="sug1">Carregando...</h3>
-      </aside>
-
-      <aside class="sugestao-card" style="flex:1; min-width:260px;">
-        <div class="muted" style="margin-bottom:6px;">Sugestão de Leitura 2</div>
-        <h3 id="sug2">Carregando...</h3>
-      </aside>
-
-      <aside class="sugestao-card" style="flex:1; min-width:260px;">
-        <div class="muted" style="margin-bottom:6px;">Sugestão de Leitura 3</div>
-        <h3 id="sug3">Carregando...</h3>
-      </aside>
-
-    </div>
-
-    <script>
-    (function() {
-
-      function coletarPosts() {
-        const heads = Array.from(document.querySelectorAll("h2.h1"));
-        const lista = [];
-        heads.forEach(h => {
-          const txt = h.textContent.trim();
-          const m = txt.match(/^(\d+)\s*#\s*(.+)$/);
-          if (m) lista.push({ id: m[1], titulo: m[2] });
-        });
-        return lista;
-      }
-
-      function embaralhar(arr) {
-        for (let i = arr.length - 1; i > 0; i--) {
-          const j = Math.floor(Math.random() * (i + 1));
-          [arr[i], arr[j]] = [arr[j], arr[i]];
-        }
-        return arr;
-      }
-
-      function mostrar3() {
-        const lista = coletarPosts();
-        if (lista.length < 1) return;
-
-        const sorteados = embaralhar([...lista]).slice(0, 3);
-
-        document.getElementById("sug1").innerHTML =
-          `<a href="#post${sorteados[0].id}">${sorteados[0].id}# ${sorteados[0].titulo}</a>`;
-
-        document.getElementById("sug2").innerHTML =
-          `<a href="#post${sorteados[1].id}">${sorteados[1].id}# ${sorteados[1].titulo}</a>`;
-
-        document.getElementById("sug3").innerHTML =
-          `<a href="#post${sorteados[2].id}">${sorteados[2].id}# ${sorteados[2].titulo}</a>`;
-      }
-
-      document.addEventListener("DOMContentLoaded", mostrar3);
-
-    })();
-    </script>
-
-    <!-- SOBRE -->
-    <section id="sobre" class="section grid">
-
-      <div class="card">
-        <h2 class="h1">Sobre RXO</h2>
-        <p>Ricardo Xavier de Oliveira</p>
-        <p>
-          Diretor de Operações e Manufatura com mais de 30 anos nas indústrias de alimentos, química,
-          fármacos e nutrição animal. Químico e Engenheiro de Alimentos, pós-graduado em Engenharia de
-          Processos pela Unicamp e com MBA em Gestão Industrial pelo IEL-PE.
-        </p>
-        <p class="muted">
-          Linha editorial: clareza, mérito, responsabilidade pessoal e simplicidade operacional com foco nas pessoas.
-        </p>
-      </div>
-
-      <div class="card">
-        <h2 class="h1">Contato</h2>
-        <p>
-          <i class="fab fa-google"></i> E-mail:
-          <a href="mailto:rxo1974@gmail.com">rxo1974@gmail.com</a><br>
-
-          <i class="fab fa-linkedin"></i> LinkedIn:
-          <a href="https://www.linkedin.com/in/rxoliveira/" target="_blank" rel="noopener">
-            linkedin.com/in/rxoliveira
-          </a><br>
-
-          <i class="fab fa-x"></i> Twitter:
-          <a href="https://x.com/rxo1974" target="_blank" rel="noopener">@rxo1974</a><br>
-
-          <i class="fab fa-instagram"></i> Instagram:
-          <a href="https://www.instagram.com/xavierdeoliveiraricardo/" target="_blank" rel="noopener">
-            @xavierdeoliveiraricardo
-          </a><br>
-
-          <i class="fab fa-whatsapp"></i> WhatsApp:
-          <a href="https://wa.me/573102135543" target="_blank" rel="noopener">
-            +57 310 213 5543
-          </a><br>
-
-          <i class="fas fa-file-alt"></i> Currículo Vitae:
-          <a href="https://drive.google.com/file/d/1bVpZlIG8Xcn_v7HZ46PrRp8ukrjyXUpQ/view?usp=sharing"
-             target="_blank" rel="noopener">
-            CV - RXO
-          </a>
-        </p>
-        <p class="muted">Links atualizados.</p>
-      </div>
-
-    </section>
 
     <!-- PUBLICAÇÕES -->
     <section id="publicacoes" class="section">
