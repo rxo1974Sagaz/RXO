@@ -80,37 +80,6 @@ a:hover{ text-decoration:underline }
   );
 }
 
-/* Assinatura RXOliveira — ORIGINAL (sem inclinação) */
-.hero::after{
-  content:"𝓡𝓧𝓞𝓵𝒾𝓋𝓮𝒾𝓇𝒶̶̴̷";
-  position:absolute;
-  top:24px;
-  right:32px;
-  left:auto;
-
-  font-family:"Times New Roman", Georgia, serif;
-  font-size:26px;
-  letter-spacing:1.1px;
-
-  color:var(--accent);
-  opacity:0.95;
-
-  pointer-events:none;
-  white-space:nowrap;
-  z-index:2;
-}
-
-/* Conteúdo da hero */
-.hero-content{
-  position:absolute;
-  left:0;
-  right:0;
-  top:16px;
-  padding:32px;
-  z-index:1;
-  color:#fff;
-}
-
 /* =========================
    TÍTULO / SUBTÍTULO
    ========================= */
