@@ -273,7 +273,9 @@ footer{
   color: var(--accent);
   opacity: 0.95;
 
-  transform: skewX(-8deg);   /* inclinação estável */
+  transform-origin: 100% 50%;  /* pivô no lado direito */
+  transform: rotate(-8deg);    /* inclinação VISÍVEL */
+
   pointer-events: none;
   white-space: nowrap;
   z-index: 5;
