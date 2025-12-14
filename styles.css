@@ -258,10 +258,8 @@ footer{
 }.hero {
   position: relative;
 }
-
 .hero::after {
   content: "𝓡𝓧𝓞𝓵𝒾𝓋𝓮𝒾𝓇𝒶̶̴̷";
-
   position: absolute;
   top: 24px;
   right: 32px;
@@ -269,12 +267,13 @@ footer{
 
   font-family: "Times New Roman", Georgia, serif;
   font-size: 26px;
-  font-style: italic;      /* inclinação segura */
+  font-style: italic;
   letter-spacing: 1.1px;
 
   color: var(--accent);
   opacity: 0.95;
 
+  transform: skewX(-8deg);   /* inclinação estável */
   pointer-events: none;
   white-space: nowrap;
   z-index: 5;
