@@ -255,21 +255,26 @@ footer{
 /* Assinatura RXOliveira – dentro do CARD da HERO, lado direito */
 .hero {
   position: relative;
+}.hero {
+  position: relative;
 }
+
 .hero::after {
   content: "𝓡𝓧𝓞𝓵𝒾𝓋𝓮𝒾𝓇𝒶̶̴̷";
+
   position: absolute;
   top: 24px;
   right: 32px;
+  left: auto !important;
 
   font-family: "Times New Roman", Georgia, serif;
   font-size: 26px;
+  font-style: italic;      /* inclinação segura */
   letter-spacing: 1.1px;
 
   color: var(--accent);
   opacity: 0.95;
 
-  transform: rotate(-6deg);
   pointer-events: none;
   white-space: nowrap;
   z-index: 5;
