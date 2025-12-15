@@ -10,8 +10,8 @@
 
   /* Capa (controles) */
   --hero-height:56vh;     /* desktop */
-  --hero-x:60%;
-  --hero-y:0%;
+  --hero-x:50%;
+  --hero-y:15%;
   --hero-size:cover;
 
   /* Gradiente da capa */
