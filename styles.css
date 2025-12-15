@@ -184,17 +184,22 @@ footer{
   text-align:center;
 }
 
-/* ===== MOBILE (cirúrgico, sem quebrar desktop) ===== */
+/* ===== MOBILE (CORRIGIDO – NÃO SOME MAIS) ===== */
 @media (max-width:520px){
 
   .hero{
-    min-height:420px;
+    height:auto;
+    min-height:480px;
+    display:flex;
+    align-items:flex-end;
   }
 
   .hero-content{
+    position:relative;
     top:auto;
-    bottom:0;
+    bottom:auto;
     padding:20px;
+    width:100%;
   }
 
   .title{
@@ -211,9 +216,9 @@ footer{
   }
 
   :root{
-    --hero-y:0%;
+    --hero-y:20%;
     --overlay-top:0.10;
-    --overlay-bottom:0.45;
+    --overlay-bottom:0.55;
   }
 }
 
