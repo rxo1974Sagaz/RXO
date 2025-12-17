@@ -1,4 +1,8 @@
-/* update 1 */
+/* update 2 — HERO com layout profissional */
+
+/* =======================
+   VARIÁVEIS GLOBAIS
+   ======================= */
 :root{
   /* Tema */
   --bg:#0b0d12;
@@ -8,22 +12,26 @@
   --card:#131722;
   --max:900px;
 
-  /* Capa (controles) */
-  --hero-height:56vh;     /* desktop */
+  /* Capa */
+  --hero-height:56vh;
   --hero-x:50%;
   --hero-y:50%;
   --hero-size:cover;
 
-  /* Gradiente da capa */
+  /* Gradiente */
   --overlay-top:0.06;
   --overlay-bottom:0.60;
 }
 
 *{box-sizing:border-box}
+
 html{scroll-behavior:smooth}
+
 html,body{
-  margin:0; padding:0;
-  background:var(--bg); color:var(--fg);
+  margin:0;
+  padding:0;
+  background:var(--bg);
+  color:var(--fg);
   font:16px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,Ubuntu,"Helvetica Neue",Arial;
 }
 
@@ -36,24 +44,22 @@ a:hover{text-decoration:underline}
   padding:10px 24px 24px;
 }
 
-/* ===== Capa (HERO) ===== */
+/* =======================
+   HERO
+   ======================= */
 .hero{
   position:relative;
   width:100%;
-
-  /* viewport seguro (desktop + mobile moderno) */
   height:var(--hero-height);
   height:56svh;
   height:56dvh;
-
   min-height:360px;
+
   border-radius:16px;
   overflow:hidden;
   box-shadow:0 10px 30px rgba(0,0,0,.35);
 
-  background-color:#000;
-  background-image:url('assets/images/cover.png');
-  background-repeat:no-repeat;
+  background:#000 url("assets/images/cover.png") no-repeat;
   background-size:var(--hero-size);
   background-position:var(--hero-x) var(--hero-y);
 }
@@ -70,25 +76,44 @@ a:hover{text-decoration:underline}
   );
 }
 
-/* Conteúdo da capa */
+/* =======================
+   CONTEÚDO DA HERO
+   ======================= */
 .hero-content{
   position:absolute;
-  left:0;
-  right:0;
-  top:16px;
+  inset:0;
   padding:32px;
   z-index:1;
   color:#fff;
+
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
 }
 
-/* Título/Subtítulo */
+/* Bloco superior */
+.hero-top{
+  max-width:900px;
+}
+
+/* =======================
+   BADGE / TÍTULO / SUB
+   ======================= */
+.badge{
+  display:inline-block;
+  font-size:12px;
+  padding:4px 10px;
+  border-radius:999px;
+  background:rgba(255,255,255,.12);
+  backdrop-filter:blur(4px);
+}
+
 .title{
   font-size:clamp(28px,4vw,44px);
   line-height:1.18;
   font-weight:800;
-  margin:10px 0 6px;
+  margin:12px 0 6px;
   text-shadow:0 2px 8px rgba(0,0,0,.35);
-  white-space:normal;
   overflow-wrap:break-word;
   hyphens:auto;
 }
@@ -100,21 +125,13 @@ a:hover{text-decoration:underline}
   text-shadow:0 2px 8px rgba(0,0,0,.25);
 }
 
-/* Badge e navegação */
-.badge{
-  display:inline-block;
-  font-size:12px;
-  padding:4px 10px;
-  border-radius:999px;
-  background:rgba(255,255,255,.12);
-  backdrop-filter:blur(4px);
-}
-
+/* =======================
+   NAVEGAÇÃO (BASE DA HERO)
+   ======================= */
 .nav{
   display:flex;
   flex-wrap:wrap;
   gap:10px;
-  margin-top:12px;
 }
 
 .nav a{
@@ -123,7 +140,9 @@ a:hover{text-decoration:underline}
   background:rgba(255,255,255,.08);
 }
 
-/* Seções e cartões */
+/* =======================
+   SEÇÕES / CARDS
+   ======================= */
 .section{margin-top:40px}
 
 .card{
@@ -134,7 +153,7 @@ a:hover{text-decoration:underline}
   box-shadow:0 10px 24px rgba(0,0,0,.18);
 }
 
-/* Grid “Sobre” */
+/* Grid */
 .grid{
   display:grid;
   gap:18px;
@@ -147,32 +166,32 @@ a:hover{text-decoration:underline}
   }
 }
 
-/* Tipografia auxiliar e mídia */
+/* =======================
+   TIPOGRAFIA / MÍDIA
+   ======================= */
 .h1{font-size:26px;margin:0 0 10px}
 .muted{color:var(--muted)}
 
 .post img{
   width:100%;
-  height:auto;
   border-radius:12px;
   margin:4px 0 14px;
   box-shadow:0 10px 24px rgba(0,0,0,.25);
 }
 
-/* Vídeos responsivos */
 .post iframe{
-  display:block;
   width:100%;
   height:450px;
   border:0;
 }
 
-/* Citações e rodapé */
+/* =======================
+   CITAÇÕES / RODAPÉ
+   ======================= */
 blockquote{
   border-left:4px solid var(--accent);
   margin:16px 0;
   padding:8px 14px;
-  color:#f5f5f5;
   background:rgba(255,209,102,.06);
   border-radius:8px;
 }
@@ -184,7 +203,9 @@ footer{
   text-align:center;
 }
 
-/* ===== MOBILE (CORRIGIDO – NÃO SOME MAIS) ===== */
+/* =======================
+   MOBILE
+   ======================= */
 @media (max-width:520px){
 
   .hero{
@@ -196,10 +217,7 @@ footer{
 
   .hero-content{
     position:relative;
-    top:auto;
-    bottom:auto;
     padding:20px;
-    width:100%;
   }
 
   .title{
@@ -222,9 +240,9 @@ footer{
   }
 }
 
-/* ============================================
-   BLOCO — Sugestão de leitura do dia
-   ============================================ */
+/* =======================
+   SUGESTÃO DE LEITURA
+   ======================= */
 .sugestao-card{
   width:260px;
   min-height:120px;
@@ -238,7 +256,6 @@ footer{
 .sugestao-card h3{
   margin:10px 0;
   font-size:17px;
-  color:var(--fg);
 }
 
 @media (max-width:700px){
