@@ -297,20 +297,3 @@ footer{
 .refresh-btn--nav:hover{
   background: rgba(255,255,255,.15);
 }
-.refresh-btn-nav:hover{
-  background: rgba(255,255,255,.15);
-}   /* ← linha 299 */
-
-/* ⬇️ COLE TUDO AQUI ⬇️ */
-
-/* ===============================
-   RXO – Mobile Refresh Button
-   =============================== */
-
-.refresh-btn {
-  position: fixed;
-  bottom: 16px;
-  right: 16px;
-  z-index: 9999;
-  ...
-}
