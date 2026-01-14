@@ -271,3 +271,42 @@ footer{
     width:100%;
   }
 }
+/* NAV + botão Atualizar (seguro: sem absolute, sem top negativo) */
+.nav{
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.nav a{
+  white-space: nowrap;
+}
+
+.refresh-btn--nav{
+  margin-left: auto; /* joga o botão para a direita */
+
+  padding: 8px 12px;
+  border-radius: 12px;
+  background: rgba(255,255,255,.08);
+  color: var(--accent);
+  border: 1px solid rgba(255,255,255,.15);
+  font-weight: 700;
+  cursor: pointer;
+
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.refresh-btn--nav:hover{
+  background: rgba(255,255,255,.15);
+}
+
+@media (max-width:700px){
+  .refresh-btn--nav{
+    width: 100%;
+    justify-content: center;
+    margin-left: 0;
+  }
+}
