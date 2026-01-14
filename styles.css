@@ -272,15 +272,17 @@ footer{
   }
 }
 
-/* Botão Atualizar dentro da barra de navegação */
+/* Botão Atualizar dentro da caixa do menu (canto direito) */
 .nav{
-  display: flex;
-  align-items: center;
-  gap: 10px;
+  position: relative;
+  padding-top: 44px; /* cria espaço acima dos links para o botão */
 }
 
 .refresh-btn--nav{
-  margin-left: auto;
+  position: absolute;
+  top: 0;
+  right: 0;
+
   padding: 8px 12px;
   border-radius: 12px;
   background: rgba(255,255,255,.08);
