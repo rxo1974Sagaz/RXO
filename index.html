@@ -8876,13 +8876,18 @@ em resultados sustentáveis, mérito e principalmente coerência entre pensament
     }
     if (latest) latest.id = 'latest';
   })();
-  </script>
-    
-  document.getElementById("btnRefresh").addEventListener("click", function () {
-    window.location.reload();
-  });
+<script>
+  const btn = document.getElementById("btnRefresh");
+  if (btn) {
+    btn.addEventListener("click", function () {
+      window.location.reload();
+    });
+  }
 </script>
 
-  
+<button id="btnRefresh" class="refresh-btn">
+  ⟳ Atualizar
+</button>
+
 </body>
 </html>
