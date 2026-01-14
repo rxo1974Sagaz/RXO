@@ -18,6 +18,10 @@
 
 <body id="topo">
 
+  <button id="btnRefresh" class="refresh-btn" title="Atualizar a página">
+    <i class="fas fa-rotate-right"></i> Atualizar
+  </button>
+
   <header class="header container">
     <div class="hero">
       <div class="hero-content">
@@ -8872,5 +8876,12 @@ em resultados sustentáveis, mérito e principalmente coerência entre pensament
     if (latest) latest.id = 'latest';
   })();
   </script>
+    
+  document.getElementById("btnRefresh").addEventListener("click", function () {
+    window.location.reload();
+  });
+</script>
+
+  
 </body>
 </html>
