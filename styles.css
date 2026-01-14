@@ -265,22 +265,29 @@ footer{
   margin:10px 0;
   font-size:17px;
 }
-
 @media (max-width:700px){
   .sugestao-card{
     width:100%;
   }
 }
 
-/* Botão Atualizar dentro da caixa do menu (canto direito) */
+/* Navegação: layout estável (sem position absolute e sem top negativo) */
 .nav{
-  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+  position: relative; /* pode ficar, não atrapalha */
 }
 
+.nav a{
+  white-space: nowrap;
+}
+
+/* Botão Atualizar: fica no canto direito sem gambiarra */
 .refresh-btn--nav{
-  position: absolute;
-  top: -270px;
-  right: 0;
+  position: static;      /* remove absolute */
+  margin-left: auto;     /* empurra pro canto direito */
 
   padding: 8px 12px;
   border-radius: 12px;
@@ -296,4 +303,22 @@ footer{
 
 .refresh-btn--nav:hover{
   background: rgba(255,255,255,.15);
+}
+
+/* Mobile: botão vira uma linha inteira (bonito e clicável) */
+@media (max-width:700px){
+  .nav{
+    gap: 10px;
+  }
+
+  .refresh-btn--nav{
+    width: 100%;
+    justify-content: center;
+    margin-left: 0;
+  }
+}
+
+/* (Opcional, mas recomendado) âncoras não ficam escondidas atrás de header fixo */
+#sobre, #publicacoes, #videos, #latest{
+  scroll-margin-top: 90px;
 }
