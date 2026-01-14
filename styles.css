@@ -275,12 +275,11 @@ footer{
 /* Botão Atualizar dentro da caixa do menu (canto direito) */
 .nav{
   position: relative;
-  padding-top: 44px; /* cria espaço acima dos links para o botão */
 }
 
 .refresh-btn--nav{
   position: absolute;
-  top: 0;
+  top: -46px;
   right: 0;
 
   padding: 8px 12px;
