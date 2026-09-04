@@ -307,3 +307,110 @@ footer{
     width:100%;
   }
 }
+
+/* ==================================================
+   BOTÃO FLUTUANTE - CHATBOT RXO
+   ================================================== */
+
+.rxo-chatbot {
+    position: fixed;
+    right: 24px;
+    bottom: 24px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+
+    min-height: 52px;
+    padding: 0 18px;
+
+    background: #131722;
+    color: #ffd166;
+
+    border: 1px solid #2a3140;
+    border-radius: 999px;
+
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 1;
+
+    text-decoration: none;
+
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+
+    z-index: 9999;
+
+    cursor: pointer;
+    touch-action: manipulation;
+
+    transition:
+        transform 0.2s ease,
+        background 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.rxo-chatbot:hover {
+    background: #181e2b;
+    border-color: #ffd166;
+    transform: translateY(-2px);
+}
+
+.rxo-chatbot:focus-visible {
+    outline: 2px solid #ffd166;
+    outline-offset: 3px;
+}
+
+.rxo-chatbot-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 30px;
+    height: 30px;
+
+    background: #ffd166;
+    color: #0b0d12;
+
+    border-radius: 50%;
+
+    font-size: 11px;
+    font-weight: 800;
+}
+
+.rxo-chatbot-text {
+    white-space: nowrap;
+}
+
+
+/* ==================================================
+   CHATBOT RXO - CELULAR
+   ================================================== */
+
+@media (max-width: 520px) {
+
+    .rxo-chatbot {
+        right: 16px;
+        bottom: calc(16px + env(safe-area-inset-bottom));
+
+        width: 56px;
+        height: 56px;
+        min-height: 56px;
+
+        padding: 0;
+
+        border-radius: 50%;
+    }
+
+    .rxo-chatbot-text {
+        display: none;
+    }
+
+    .rxo-chatbot-icon {
+        width: 34px;
+        height: 34px;
+
+        font-size: 12px;
+    }
+}
