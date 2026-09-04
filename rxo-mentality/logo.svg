@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title">
+  <title id="title">RXO Mentality</title>
+  <rect width="64" height="64" rx="15" fill="#ffd166"/>
+  <path d="M18 47V17h14.2c7.2 0 12 4.1 12 10.3 0 4.4-2.3 7.7-6.3 9.2L46 47h-9l-6.8-9.2h-4.3V47H18Zm7.9-15.7h5.6c3.1 0 4.8-1.3 4.8-3.7s-1.7-3.7-4.8-3.7h-5.6v7.4Z" fill="#0b0d12"/>
+</svg>
