@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#0b0d12" />
+    <meta
+      name="description"
+      content="RXO Mentality: uma inteligência editorial local para analisar ideias com lógica, causalidade e posição."
+    />
+    <title>RXO Mentality</title>
+    <link rel="icon" href="./logo.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#composer-input">Ir para a conversa</a>
+
+    <header class="site-header">
+      <a class="brand" href="https://rxobr.com" aria-label="Voltar ao site RXO">
+        <span class="brand-mark" aria-hidden="true">R</span>
+        <span>
+          <strong>RXO Mentality</strong>
+          <small>Realidade antes da narrativa</small>
+        </span>
+      </a>
+
+      <div class="header-actions">
+        <span class="privacy-badge" title="As conversas não saem deste dispositivo">
+          <span class="status-dot"></span>
+          IA local
+        </span>
+        <button class="icon-button" id="reset-button" type="button" title="Nova conversa" aria-label="Iniciar nova conversa">
+          ↻
+        </button>
+      </div>
+    </header>
+
+    <main class="app-shell">
+      <aside class="context-panel" aria-label="Sobre a RXO Mentality">
+        <p class="eyebrow">Uma mente de engenharia</p>
+        <h1>Traga a tese.<br /><span>Eu trago a régua.</span></h1>
+        <p class="lead">
+          Uma persona intelectual construída para separar fatos, testar causas,
+          expor incentivos e chegar a uma posição clara.
+        </p>
+
+        <div class="principle-card">
+          <span>Princípio central</span>
+          <blockquote>
+            “A quebra visível encerra a história. A quebra do protocolo é o momento em que ela realmente começa.”
+          </blockquote>
+        </div>
+
+        <div class="suggestions" aria-label="Sugestões de conversa">
+          <span>Coloque uma ideia na mesa</span>
+          <button class="suggestion" type="button" data-prompt="Uma empresa deve premiar esforço ou resultado? Analise os incentivos e tome uma posição.">
+            Esforço ou resultado?
+          </button>
+          <button class="suggestion" type="button" data-prompt="Tecnologia resolve problemas de gestão ou apenas os torna mais caros?">
+            Tecnologia e gestão
+          </button>
+          <button class="suggestion" type="button" data-prompt="Como identificar a primeira quebra antes que um pequeno desvio vire um grande problema?">
+            Encontrar a primeira quebra
+          </button>
+        </div>
+
+        <p class="local-note">
+          Sem conta, sem nuvem e sem chave de API. O modelo roda no navegador e a memória fica apenas neste dispositivo.
+        </p>
+      </aside>
+
+      <section class="chat-panel" aria-label="Conversa com RXO Mentality">
+        <div class="chat-toolbar">
+          <div>
+            <span class="toolbar-label">Motor de raciocínio</span>
+            <select id="model-select" aria-label="Escolher modelo local">
+              <option value="light">Leve · aproximadamente 1 GB</option>
+              <option value="balanced">Equilibrado · aproximadamente 2,7 GB</option>
+            </select>
+          </div>
+          <span id="engine-status" class="engine-status" data-state="idle">Não iniciado</span>
+        </div>
+
+        <div id="messages" class="messages" aria-live="polite" aria-label="Mensagens"></div>
+
+        <section id="loader-card" class="loader-card">
+          <div class="loader-copy">
+            <p class="eyebrow">Primeiro uso</p>
+            <h2>A inteligência será carregada neste navegador.</h2>
+            <p id="loader-description">
+              O modelo leve exige cerca de 1 GB de download e memória gráfica compatível. Depois, ele permanece no cache do navegador.
+            </p>
+          </div>
+          <button id="load-model-button" class="primary-button" type="button">Ativar RXO Mentality</button>
+          <div id="progress-wrap" class="progress-wrap" hidden>
+            <div class="progress-track" aria-hidden="true"><span id="progress-bar"></span></div>
+            <p id="progress-text">Preparando o modelo…</p>
+          </div>
+          <p id="compatibility-message" class="compatibility-message" hidden></p>
+        </section>
+
+        <form id="composer" class="composer">
+          <label class="sr-only" for="composer-input">Escreva sua tese ou pergunta</label>
+          <textarea
+            id="composer-input"
+            rows="1"
+            maxlength="5000"
+            placeholder="Escreva uma tese, pergunta ou argumento…"
+            disabled
+          ></textarea>
+          <button id="send-button" class="send-button" type="submit" disabled aria-label="Enviar mensagem">
+            <span>Enviar</span>
+            <span aria-hidden="true">↑</span>
+          </button>
+        </form>
+        <p class="disclaimer">
+          Modelo experimental e sem acesso à internet. Para fatos atuais, forneça dados e fontes na própria conversa.
+        </p>
+      </section>
+    </main>
+
+    <noscript>Ative o JavaScript para usar a RXO Mentality.</noscript>
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>
